@@ -1,6 +1,11 @@
+<p>home component works</p>
+<google-map 
+    height="500px" 
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+    ></google-map>
 
-
-<p>home component works!</p>
-<div id="map">
-    
-</div>
+<button class="btn btn-primary" (click)="zoomIn()">Zoom in</button>
+<button class="btn btn-primary" (click)="zoomOut()">Zoom out</button>
