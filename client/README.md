@@ -1,27 +1,54 @@
-# Client
+# IBF 2022 Batch 1 Mini Project (Client - Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+## BootStrap
+1. ng add @ng-bootstrap/ng-bootstrap
+2. add to angular.json > styles
+- "node_modules/bootstrap/dist/css/bootstrap.css",
+https://ng-bootstrap.github.io/#/getting-started
+### Bootstrap spacing
+https://mdbootstrap.com/docs/angular/utilities/spacing/
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Google maps
+https://angular-maps.com/guides/getting-started/
+npm install @angular/google-maps
 
-## Code scaffolding
+Google Maps Console
+https://console.cloud.google.com/apis/credentials?project=big-elysium-384904
+ng serve --port 4201
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+TODO:
+1. Add event listeners for map
+- detect click / location
+- link to search address bar (look for locations)
+- Input (North, South, East, West) - dropdown menu
+- search for fitness corners, display on map
+- detect zoom (Optional)
+2. Spring boot API 
+- query NParks RESTful API for list of park names
+- GET locations
+- POST saved locations
+- PUT edit saved locations
+- DELETE edit saved locations (PUT also?)
 
-## Running unit tests
+3. Database (SQL)
+- users table
+- parks location table
+- fitness location table
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. OAuth2
+- Create User account
+- Access Google Resourses
 
-## Running end-to-end tests
+WHAT IS CONTAINERISATION? HOW TO DO IT? WHAT DOES IT SOLVE?
+https://www.google.com/search?q=how+to+containerise+angular+and+springboot+application&oq=how+to+containerise+angular+and+springboot+application&aqs=chrome..69i57j33i160j33i22i29i30l6.11260j0j1&sourceid=chrome&ie=UTF-8
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+WHAT IS SPRINGBOOT JWT (Json Web Token)
+https://www.baeldung.com/spring-security-oauth-jwt
 
-## Further help
+DONE: 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+

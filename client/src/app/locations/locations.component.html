@@ -1,0 +1,19 @@
+<!-- LOCATIONS COMPONENT -->
+<div class="container">
+    <div class="input-group my-4">
+        <input type="text" class="form-control" placeholder="Location">
+        <button class="btn btn-success" type="button">Go!</button>
+    </div>
+    
+    <google-map 
+        height="500px" 
+        width="100%"
+        [zoom]="zoom"
+        [center]="center"
+        [options]="options"
+    ></google-map>
+    
+    <button class="btn btn-primary" (click)="zoomIn()">Zoom in</button>
+    <button class="btn btn-primary" (click)="zoomOut()">Zoom out</button>
+
+</div>
