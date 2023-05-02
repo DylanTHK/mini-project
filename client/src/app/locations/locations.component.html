@@ -5,15 +5,42 @@
         <button class="btn btn-success" type="button">Go!</button>
     </div>
     
-    <google-map 
-        height="500px" 
-        width="100%"
-        [zoom]="zoom"
-        [center]="center"
-        [options]="options"
-    ></google-map>
-    
-    <button class="btn btn-primary" (click)="zoomIn()">Zoom in</button>
-    <button class="btn btn-primary" (click)="zoomOut()">Zoom out</button>
+    <google-map height="500px" 
+                width="100%"
+                [zoom]="zoom"
+                [center]="center"
+                [options]="options"
+                (mapClick)="findLocations($event)"
+        >
+        <map-marker 
+                    #curr="mapMarker"
+                    *ngFor="let p of selectedPositions"
+                    [position]="p.position"
+                    [options]="p.options"
+                    (mapClick)="openInfo(curr)">
+                    <map-info-window>{{p.position.lat}}, {{p.position.lng}}</map-info-window>
+        </map-marker>
+        <map-marker 
+                    #queryLocation="mapMarker"
+                    *ngFor="let m of markers"
+                    [position]="m.position"
+                    [options]="m.options"
 
+                    (mapClick)="openInfo(queryLocation)">
+                    <map-info-window>{{m.position.lat}}, {{m.position.lng}}</map-info-window>
+        </map-marker>
+    </google-map>
+    
+    <div class="row mb-4">
+        <div class="text-light">
+            Zoom: {{zoom}}
+        </div>
+        <div class="row">
+            <button class="btn btn-primary col-1" (click)="zoomIn()">+</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary col-1" (click)="zoomOut()">-</button>
+        </div>
+
+    </div>
 </div>

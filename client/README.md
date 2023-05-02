@@ -17,6 +17,8 @@ Google Maps Console
 https://console.cloud.google.com/apis/credentials?project=big-elysium-384904
 ng serve --port 4201
 
+GoogleMaps Places API
+https://maps.googleapis.com/maps/api/place/nearbysearch/output?location=&location=-33.8670522%2C151.1957362&radius=1500
 
 
 TODO:
