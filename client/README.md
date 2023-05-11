@@ -19,7 +19,11 @@ ng serve --port 4201
 
 GoogleMaps Places API
 https://maps.googleapis.com/maps/api/place/nearbysearch/output?location=&location=-33.8670522%2C151.1957362&radius=1500
+https://developers.google.com/maps/documentation/places/web-service/search-nearby#maps_http_places_nearbysearch-txt
 
+Map Markers
+https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-color-8a72131d1207/
+https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
 
 TODO:
 1. Add event listeners for map

@@ -12,22 +12,32 @@
                 [options]="options"
                 (mapClick)="findLocations($event)"
         >
+        <!-- current location marker (RED) -->
         <map-marker 
                     #curr="mapMarker"
                     *ngFor="let p of selectedPositions"
                     [position]="p.position"
-                    [options]="p.options"
-                    (mapClick)="openInfo(curr)">
-                    <map-info-window>{{p.position.lat}}, {{p.position.lng}}</map-info-window>
+                    [options]="redMarkerOptions"
+                    (mapClick)="openInfo(curr, infoWindow)">
+                    <map-info-window #infoWindow="mapInfoWindow">
+                        {{p.name}}
+                        <br>
+                        {{p.position.lat}}, {{p.position.lng}}
+                    </map-info-window>
         </map-marker>
+        <!-- nearby location markers (GREEN) -->
         <map-marker 
-                    #queryLocation="mapMarker"
+                    #markers="mapMarker"
                     *ngFor="let m of markers"
                     [position]="m.position"
-                    [options]="m.options"
+                    [options]="greenMarkerOptions"
 
-                    (mapClick)="openInfo(queryLocation)">
-                    <map-info-window>{{m.position.lat}}, {{m.position.lng}}</map-info-window>
+                    (mapClick)="openInfo(markers, infoWindow)">
+                    <map-info-window #infoWindow="mapInfoWindow">
+                        {{m.name}}
+                        <br>
+                        {{m.position.lat}}, {{m.position.lng}}
+                    </map-info-window>
         </map-marker>
     </google-map>
     
@@ -42,5 +52,12 @@
             <button class="btn btn-primary col-1" (click)="zoomOut()">-</button>
         </div>
 
+    </div>
+
+    <!-- TODO: Placeholder for nearby search data -->
+    <h2 class="text-light">Locations Near You</h2>
+    <div class="row mb-12" *ngFor="let m of markers">
+        <p class="">{{m.name}}</p>
+        <button class="btn btn-primary"> @Email</button>
     </div>
 </div>

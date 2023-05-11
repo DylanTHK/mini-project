@@ -1,28 +1,33 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Subject, firstValueFrom } from 'rxjs';
+import { Marker } from '../models/model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  private url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+  private url = "/api/fitness";
   
+  locationSubject = new Subject<Marker[]>();
 
   constructor(private httpClient: HttpClient) { }
 
-  getLocations() {
-    const notKey = "AIzaSyAake5omU1MJGj9A6SNl3y-MwmjzBbuVRI";
-    const keyword = "fitness corner";
+  getNearbyLocations(lat: number , lng: number) {
     const radius = 500;
-    const location = "1.332326 103.936659";
+    const location = lat + " " + lng;
 
-    const params = new HttpParams().set("keyword", keyword)
+    const params = new HttpParams()
       .set("radius", radius)
       .set("location", location)
-      .set("key", notKey)
 
-    return this.httpClient.get<any>(this.url, {params});
+    firstValueFrom(this.httpClient.get<Marker[]>(this.url, {params}))
+      .then(data => {
+        console.info(data);
+        this.locationSubject.next(data);
+      });
   }
 }
+
+

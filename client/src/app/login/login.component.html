@@ -9,14 +9,15 @@
                     Log In With
                 </span>
 
-                <a href="#" class="btn-face m-b-20">
+                <!-- <a href="#" class="btn-face m-b-20">
                     <i>
                         <fa-icon [icon]="faFacebook"></fa-icon>                        
                     </i>
                     Facebook
-                </a>
+                </a> -->
 
-                <a href="#" class="btn-google ">
+                <a class="btn-google"
+                    (click)="loginWithGoogle()">
                     <img src="assets/icons/icon-google.png" alt="GOOGLE">
                     Google
                 </a>
@@ -56,7 +57,8 @@
                         Not a member?
                     </span>
 
-                    <a [routerLink]="['/signup']" class="txt2 bo1">
+                    <!-- [routerLink]="['/signup']" class="txt2 bo1"> -->
+                    <a >
                         Sign up now
                     </a>
                 </div>

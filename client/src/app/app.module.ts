@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LocationsComponent } from './locations/locations.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { ContributeComponent } from './contribute/contribute.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ContributeComponent } from './contribute/contribute.component';
     GoogleMapsModule,
     FontAwesomeModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

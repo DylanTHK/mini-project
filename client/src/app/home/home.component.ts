@@ -7,20 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  zoom = 12;
-  // set center to tampines
-  center: google.maps.LatLngLiteral = {
-        lat: 1.332326,
-        lng: 103.936659
-  };
-  options: google.maps.MapOptions = {
-    mapTypeId: 'hybrid',
-    zoomControl: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: true,
-    maxZoom: 15,
-    minZoom: 8,
-  };
 
   constructor() { }
 
@@ -34,13 +20,4 @@ export class HomeComponent implements OnInit {
     // })
   }
 
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom!)
-      this.zoom++;
-  }
-
-  zoomOut() {
-    if (this.zoom > this.options.minZoom!)
-      this.zoom--
-  } 
 }

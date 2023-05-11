@@ -8,7 +8,8 @@ import { WorkoutsComponent } from './workouts/workouts.component';
 import { ContributeComponent } from './contribute/contribute.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "/home", pathMatch: "full"},
+  // {path: "", redirectTo: "/home", pathMatch: "full"},
+  {path: "", component: HomeComponent},
   {path: "home", component: HomeComponent},
   {path: "locations", component: LocationsComponent,
     children: [
@@ -21,11 +22,12 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "signup", component: SignupComponent},
 
-  {path: "**", redirectTo: "", pathMatch: "full"}
+  {path: "**", redirectTo: "/home", pathMatch: "full"}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  // imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
