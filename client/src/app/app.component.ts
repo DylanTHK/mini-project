@@ -9,18 +9,19 @@ import { GoogleApiService, UserInfo } from './services/google-api.service';
 })
 export class AppComponent {
   title = 'Budget Fitness App';
-  mailSnippets: string[] = []
-  userInfo?: UserInfo
+  mailSnippets: string[] = [];
+  userInfo?: UserInfo;
 
   constructor(private readonly googleApi: GoogleApiService) {
     googleApi.userProfileSubject.subscribe( info => {
-      this.userInfo = info
+      console.info(info);
+      this.userInfo = info;
     })
   }
 
   isLoggedIn(): boolean {
-    // return this.googleApi.isLoggedIn()
-    return true;
+    return this.googleApi.isLoggedIn()
+    // return true;
   }
 
   logout() {

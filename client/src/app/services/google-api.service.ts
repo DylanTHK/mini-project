@@ -10,8 +10,7 @@ const authCodeFlowConfig: AuthConfig = {
   strictDiscoveryDocumentValidation: false,
   // URL of the SPA to redirect the user to after login
   redirectUri: window.location.origin,
-  // The SPA's id. The SPA is registerd with this id at the auth-server
-  // clientId: 'server.code',
+  // The SPA's id. The SPA is registerd with this id at the auth-server, clientId: 'server.code',
   clientId: '342812509181-47ffafeknlkv659f4l2jibfb6hg7h3rr.apps.googleusercontent.com',
   // clientId: "spa",
   // set the scope for the permissions the client should request
@@ -32,40 +31,58 @@ export interface UserInfo {
 })
 export class GoogleApiService {
 
-  gmail = 'https://gmail.googleapis.com'
+  gmail = 'https://gmail.googleapis.com';
 
-  userProfileSubject = new Subject<UserInfo>()
+  userProfileSubject = new Subject<UserInfo>();
 
-  constructor(private oAuthService: OAuthService, private readonly httpClient: HttpClient) {
-   
-  }
+  constructor(
+    private oAuthService: OAuthService, 
+    private readonly httpClient: HttpClient) {
+      // FIXME: testing
+    //   this.oAuthService.configure(authCodeFlowConfig);
+    //   this.oAuthService.loadDiscoveryDocument().then( () => {
+    //     console.info("in loadDiscoveryDocument");
+    //   this.oAuthService.tryLoginImplicitFlow().then( () => {
+    //     if (!this.oAuthService.hasValidAccessToken()) {
+    //       this.oAuthService.initLoginFlow();
+    //     } else {
+    //       this.oAuthService.loadUserProfile().then( (userProfile) => {
+    //         this.userProfileSubject.next(userProfile as UserInfo);
+    //       })
+    //     }
+    //   })
+    // });
+    this.oAuthService.configure(authCodeFlowConfig);
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
+
+    }
 
   oauthFlow() {
-     // configure oauth2 service
-    this.oAuthService.configure(authCodeFlowConfig);
+    //  // configure oauth2 service
+    // this.oAuthService.configure(authCodeFlowConfig);
  
+    // // loading the discovery document from google, which contains all relevant URL for
+    // // the OAuth flow, e.g. login url
+    // this.oAuthService.loadDiscoveryDocument().then( () => {
+    //   console.info("in loadDiscoveryDocument");
+    //   // This method just tries to parse the token(s) within the url when
+    //   // the auth-server redirects the user back to the web-app
+    //   // It doesn't send the user the the login page
+    //   this.oAuthService.tryLoginImplicitFlow().then( () => {
 
-    // loading the discovery document from google, which contains all relevant URL for
-    // the OAuth flow, e.g. login url
-    this.oAuthService.loadDiscoveryDocument().then( () => {
-      console.info("in loadDiscoveryDocument")
-      // This method just tries to parse the token(s) within the url when
-      // the auth-server redirects the user back to the web-app
-      // It doesn't send the user the the login page
-      this.oAuthService.tryLoginImplicitFlow().then( () => {
-
-        // when not logged in, redirecvt to google for login
-        // else load user profile
-        if (!this.oAuthService.hasValidAccessToken()) {
-          this.oAuthService.initLoginFlow()
-        } else {
-          this.oAuthService.loadUserProfile().then( (userProfile) => {
-            this.userProfileSubject.next(userProfile as UserInfo)
-          })
-        }
-
-      })
-    });
+    //     // when not logged in, redirecvt to google for login
+    //     // else load user profile
+    //     if (!this.oAuthService.hasValidAccessToken()) {
+    //       this.oAuthService.initLoginFlow();
+    //     } else {
+    //       this.oAuthService.loadUserProfile().then( (userProfile) => {
+    //         this.userProfileSubject.next(userProfile as UserInfo);
+    //       })
+    //     }
+    //   })
+    // });
+    // FIXME: testing
+    this.oAuthService.initLoginFlow();
   }
 
   emails(userId: string): Observable<any> {

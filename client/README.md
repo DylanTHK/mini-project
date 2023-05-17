@@ -25,12 +25,16 @@ Map Markers
 https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-color-8a72131d1207/
 https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
 
+OAuth2 (Authorisation)
+- provide key for specific access to app
+https://github.com/manfredsteyer/angular-oauth2-oidc
+
+OpenId Connect (Authentication)
+
 TODO:
 1. Add event listeners for map
-- detect click / location
 - link to search address bar (look for locations)
 - Input (North, South, East, West) - dropdown menu
-- search for fitness corners, display on map
 - detect zoom (Optional)
 2. Spring boot API 
 - query NParks RESTful API for list of park names
@@ -44,7 +48,7 @@ TODO:
 - parks location table
 - fitness location table
 
-4. OAuth2
+4. OAuth2 (Open Authorisation)
 - Create User account
 - Access Google Resourses
 
@@ -55,6 +59,6 @@ WHAT IS SPRINGBOOT JWT (Json Web Token)
 https://www.baeldung.com/spring-security-oauth-jwt
 
 DONE: 
-
-
-
+1. Add event listeners for map
+- detect click / location
+- search for fitness corners, display on map
