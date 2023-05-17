@@ -12,7 +12,6 @@ public class UserRepository {
     
     private final String SQL_INSERT_USER = "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)";
     private final String SQL_GET_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
-
     private final String SQL_DELETE_USER_BY_EMAIL = "DELETE FROM users WHERE email = ?";
 
     @Autowired
@@ -43,15 +42,7 @@ public class UserRepository {
 
     // validate password of user
     public boolean validatePassword(String dbPassword, String inputPassword) {
-        System.out.println("input password: " + inputPassword);
-        System.out.println("DB password: " + dbPassword);
-        if (dbPassword.trim() == inputPassword.trim()) {
-            System.out.println("Password Matches!");
-        } else {
-            System.out.println("Password Dont Match!");
-        }
-
-        return dbPassword == inputPassword;
+        return dbPassword.equals(inputPassword);
     }
 
     public Integer removeUser(String email) {
