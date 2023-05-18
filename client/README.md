@@ -7,6 +7,7 @@
 https://ng-bootstrap.github.io/#/getting-started
 ### Bootstrap spacing
 https://mdbootstrap.com/docs/angular/utilities/spacing/
+ng serve --proxy-config src/proxy.config.js
 
 
 Google maps
@@ -15,7 +16,6 @@ npm install @angular/google-maps
 
 Google Maps Console
 https://console.cloud.google.com/apis/credentials?project=big-elysium-384904
-ng serve --port 4201
 
 GoogleMaps Places API
 https://maps.googleapis.com/maps/api/place/nearbysearch/output?location=&location=-33.8670522%2C151.1957362&radius=1500
