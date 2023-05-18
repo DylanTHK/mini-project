@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ContributeComponent } from './contribute/contribute.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WorkoutsComponent } from './workouts/workouts.component';
     LoginComponent,
     SignupComponent,
     ContributeComponent,
-    WorkoutsComponent
+    WorkoutsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

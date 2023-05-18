@@ -1,5 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"> -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
     <div class="container-xl">
         <a [routerLink]="['/home']" class="navbar-brand">FitnessForFree</a>
 
@@ -30,8 +30,8 @@
                     </a>
                     <!-- TODO: fix to match number of workouts -->
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" [routerLink]="['/locations', 'running']">Running</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/locations', 'static']">Static</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/locations', 'running']">History</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/locations', 'static']">Statistics</a></li>
                     </ul>
                 </li>
                 <li>
@@ -41,7 +41,7 @@
             <div class="d-flex">
 
                 <!-- TODO: to check if logged in or not, hide if not logged in -->
-                <ul class="navbar-nav" *ngIf="false">
+                <ul class="navbar-nav" *ngIf="true">
                     <li>
                         <a class="nav-link" [routerLink]="['/login']">Log In</a>
                     </li>
@@ -51,7 +51,7 @@
                 </ul>
     
                 <!-- TODO: update *ngIf: Show if logged in -->
-                <ul class="navbar-nav" *ngIf="true">
+                <ul class="navbar-nav" *ngIf="false">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" 
                             id="navbarDropdown" 
