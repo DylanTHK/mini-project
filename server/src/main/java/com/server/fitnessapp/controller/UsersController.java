@@ -132,20 +132,7 @@ public class UsersController {
     }
 
 
-    // ===== TOKEN =====
-    // TODO:
-    @GetMapping("/token")
-    public ResponseEntity<String> getToken() {
-        
-        return null;
-    }
 
-    // TODO:
-    @PostMapping("/token")
-    public ResponseEntity<String> updateToken() {
-        
-        return null;
-    }
 
 
 }
