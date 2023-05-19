@@ -3,3 +3,4 @@
 ## BootStrap
 1. ng add @ng-bootstrap/ng-bootstrap
 2. add to angular.json > styles
+

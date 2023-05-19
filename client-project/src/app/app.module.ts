@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ContributeComponent } from './contribute/contribute.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

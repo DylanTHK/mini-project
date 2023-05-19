@@ -1,14 +1,24 @@
 <div class="form-login vw-100">
-    <form class="text-center p-5">
+    <form class="text-center p-5" [formGroup]="loginForm" (submit)="onSubmit()">
         <img class="mb-4" src="../assets/images/FFF_logo.jpg" width="150px">
-        <h1 class="h3 mb-2 fw-normal">Please Log in</h1>
+        <h1 class="h3 mb- fw-normal">Please Log in</h1>
     
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" 
+            class="form-control" 
+            id="floatingInput" 
+            placeholder="name@example.com"
+            formControlName="email">
           <label for="floatingInput">Email address</label>
         </div>
+
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" 
+            class="form-control ng-untouched ng-pristine ng-invalid" 
+            id="floatingPassword" 
+            placeholder="Password"
+            formControlName="password"
+            ng-reflect-name="password">
           <label for="floatingPassword">Password</label>
         </div>
     
@@ -17,8 +27,25 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        
+        <div class="row d-flex align-items-center px-3 mb-3">
+          <button class="w-100 btn btn-lg btn-primary col-sm" type="submit">Sign in</button>
+          <a class="col-sm" [routerLink]="['/signup']">Register</a>
+        </div>
+
+        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+          class="text-danger">
+          <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format.</div>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+          class="text-danger">
+          <div *ngIf="loginForm.get('password')?.hasError('required')">Email is required.</div>
+        </div>
+        <div *ngIf="invalidAccount" class="text-danger">
+          Invalid email or password.
+        </div>
+
         <p class="mt-5 mb-3 text-muted">&copy; Fitness For Free</p>
       </form>
 </div>
-  
