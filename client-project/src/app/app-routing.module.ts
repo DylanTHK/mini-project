@@ -4,8 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { ContributeComponent } from './contribute/contribute.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './users/login/login.component';
+import { SignupComponent } from './users/signup/signup.component';
 
 const routes: Routes = [
   // {path: "", redirectTo: "home", pathMatch: "full"},
