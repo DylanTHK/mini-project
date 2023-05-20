@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+// import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const authCodeFlowConfig: AuthConfig = {
-  // Url of the Identity Provider
-  issuer: 'https://accounts.google.com',
-  // strict discovery document disallows urls which not start with issuers url
-  strictDiscoveryDocumentValidation: false,
-  // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin,
-  // The SPA's id. The SPA is registerd with this id at the auth-server, clientId: 'server.code',
-  clientId: '342812509181-47ffafeknlkv659f4l2jibfb6hg7h3rr.apps.googleusercontent.com',
-  // clientId: "spa",
-  // set the scope for the permissions the client should request
-  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
-  showDebugInformation: true,
-};
+// PURPOSE: for OAuth2 Authorization
+// const authCodeFlowConfig: AuthConfig = {
+//   // Url of the Identity Provider
+//   issuer: 'https://accounts.google.com',
+//   // strict discovery document disallows urls which not start with issuers url
+//   strictDiscoveryDocumentValidation: false,
+//   // URL of the SPA to redirect the user to after login
+//   redirectUri: window.location.origin,
+//   // The SPA's id. The SPA is registerd with this id at the auth-server, clientId: 'server.code',
+//   clientId: '342812509181-47ffafeknlkv659f4l2jibfb6hg7h3rr.apps.googleusercontent.com',
+//   // clientId: "spa",
+//   // set the scope for the permissions the client should request
+//   scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
+//   showDebugInformation: true,
+// };
 export interface UserInfo {
   info: {
     sub: string
@@ -36,7 +37,7 @@ export class GoogleApiService {
   userProfileSubject = new Subject<UserInfo>();
 
   constructor(
-    private oAuthService: OAuthService, 
+    // private oAuthService: OAuthService, 
     private readonly httpClient: HttpClient) {
       // FIXME: testing
     //   this.oAuthService.configure(authCodeFlowConfig);
@@ -52,8 +53,8 @@ export class GoogleApiService {
     //     }
     //   })
     // });
-    this.oAuthService.configure(authCodeFlowConfig);
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
+    // this.oAuthService.configure(authCodeFlowConfig);
+    // this.oAuthService.loadDiscoveryDocumentAndTryLogin();
 
     }
 
@@ -82,30 +83,30 @@ export class GoogleApiService {
     //   })
     // });
     // FIXME: testing
-    this.oAuthService.initLoginFlow();
+  //   this.oAuthService.initLoginFlow();
   }
 
-  emails(userId: string): Observable<any> {
-    return this.httpClient.get(`${this.gmail}/gmail/v1/users/${userId}/messages`, { headers: this.authHeader() })
-  }
+  // emails(userId: string): Observable<any> {
+  //   return this.httpClient.get(`${this.gmail}/gmail/v1/users/${userId}/messages`, { headers: this.authHeader() })
+  // }
 
-  getMail(userId: string, mailId: string): Observable<any> {
-    return this.httpClient.get(`${this.gmail}/gmail/v1/users/${userId}/messages/${mailId}`, { headers: this.authHeader() })
-  }
+  // getMail(userId: string, mailId: string): Observable<any> {
+  //   return this.httpClient.get(`${this.gmail}/gmail/v1/users/${userId}/messages/${mailId}`, { headers: this.authHeader() })
+  // }
 
-  isLoggedIn(): boolean {
-    return this.oAuthService.hasValidAccessToken()
-  }
+  // isLoggedIn(): boolean {
+  //   return this.oAuthService.hasValidAccessToken()
+  // }
 
-  signOut() {
-    // manually configure a logout url, because googles discovery document does not provide it]
-    this.oAuthService.logoutUrl = "https://www.google.com/accounts/Logout";
-    this.oAuthService.logOut()
-  }
+  // signOut() {
+  //   // manually configure a logout url, because googles discovery document does not provide it]
+  //   this.oAuthService.logoutUrl = "https://www.google.com/accounts/Logout";
+  //   this.oAuthService.logOut()
+  // }
 
-  private authHeader() : HttpHeaders {
-    return new HttpHeaders ({
-      'Authorization': `Bearer ${this.oAuthService.getAccessToken()}`
-    })
-  }
+  // private authHeader() : HttpHeaders {
+  //   return new HttpHeaders ({
+  //     'Authorization': `Bearer ${this.oAuthService.getAccessToken()}`
+  //   })
+  // }
 }

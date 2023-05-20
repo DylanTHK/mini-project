@@ -25,9 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
+    console.info("submitting form");
+    // if (this.loginForm.invalid) {
+      
+    //   return;
+    // }
     // if valid, continue with SB login Process
 
     

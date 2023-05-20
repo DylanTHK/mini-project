@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Subject, firstValueFrom } from 'rxjs';
 import { Marker } from '../models/model';
 
+// PURPOSE: to get Google maps data from Angular Google maps api
 @Injectable({
   providedIn: 'root'
 })
-export class LocationService {
+export class GoogleMapsService {
 
   private url = "/api/fitness";
   
