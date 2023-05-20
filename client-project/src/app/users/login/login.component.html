@@ -1,3 +1,7 @@
+<p *ngFor="let alert of alerts">
+	<ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+</p>
+
 <div class="form-login vw-100">
     <form class="text-center p-5" [formGroup]="loginForm" (submit)="onSubmit()">
         <img class="mb-4" src="../assets/images/FFF_logo.jpg" width="150px">

@@ -15,7 +15,7 @@ export class GoogleMapsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getNearbyLocations(lat: number , lng: number) {
+  getNearbyLocations(lat: number, lng: number) {
     const radius = 500;
     const location = lat + " " + lng;
 

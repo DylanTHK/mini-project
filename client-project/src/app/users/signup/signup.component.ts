@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AddUserDetails } from 'src/app/models/model';
+import { Subscription } from 'rxjs';
+import { AddUserDetails, Alert } from 'src/app/models/model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,17 +10,25 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
 
-  created: boolean = false;
+export class SignupComponent implements OnInit, OnDestroy{
+
+  // created: boolean = false;
+  // statusSub$!: Subscription;
   signupForm!: FormGroup;
 
   constructor(private fb: FormBuilder, 
     private router: Router,
-    private userSvc: UserService) { };
+    private userSvc: UserService) { 
+
+    };
 
   ngOnInit(): void {
-    // TODO: add subscription to update created status
+    // subscription to update created status
+    // this.statusSub$ = this.userSvc.createdSub.subscribe(data => {
+    //   this.created = data;
+    //   console.info(this.created);
+    // });
 
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
@@ -30,6 +39,10 @@ export class SignupComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       agreeTerms: [false, Validators.requiredTrue]
     });
+  }
+
+  ngOnDestroy(): void {
+      // this.statusSub$.unsubscribe();
   }
 
   // Handle form submission logic here
@@ -48,11 +61,9 @@ export class SignupComponent implements OnInit {
         }
         // send form details 
         this.userSvc.addUser(details);
+        this.router.navigate(['/login']);
       }
     }
-    // navigate to home
-    // TODO: check if creation successful
-    this.router.navigate(['/login']);
   }
 
 }

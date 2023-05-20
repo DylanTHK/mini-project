@@ -20,3 +20,4 @@ CREATE TABLE user_tokens (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+SELECT * FROM users;

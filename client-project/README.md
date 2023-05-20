@@ -35,7 +35,6 @@ git checkout <branch name>
 
 
 TODO:
-
 ## Mandatory
 5. Application manifest
 8. Parameterized routes

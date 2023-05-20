@@ -45,13 +45,13 @@ public class UserRepository {
     public boolean validatePassword(String dbPassword, String inputPassword) {
         System.out.println("input password: " + inputPassword);
         System.out.println("DB password: " + dbPassword);
-        if (dbPassword.trim() == inputPassword.trim()) {
+        if (dbPassword.equals(inputPassword)) {
             System.out.println("Password Matches!");
         } else {
             System.out.println("Password Dont Match!");
         }
 
-        return dbPassword == inputPassword;
+        return dbPassword.equals(inputPassword);
     }
 
     public Integer removeUser(String email) {

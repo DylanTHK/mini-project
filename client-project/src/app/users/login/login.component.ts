@@ -1,17 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Alert } from 'src/app/models/model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  alerts: Alert[] = [];
+  alertSub = new Subscription();
 
   loginForm!: FormGroup;
   invalidAccount: boolean = false;
 
-  constructor(private fb: FormBuilder) { };
+  constructor(private fb: FormBuilder,
+    private userSvc: UserService) { 
+    this.reset();
+  };
 
 
   ngOnInit(): void {
@@ -21,7 +29,16 @@ export class LoginComponent implements OnInit {
           password: this.fb.control("", [Validators.required]),
           rememberMe: [false]
         }
+      );
+      this.alertSub = this.userSvc.newAlert.subscribe(
+        data => {
+          this.alerts.push(data);
+        }
       )
+  }
+
+  ngOnDestroy(): void {
+      
   }
 
   onSubmit() {
@@ -31,8 +48,14 @@ export class LoginComponent implements OnInit {
     //   return;
     // }
     // if valid, continue with SB login Process
-
-    
   }
+
+  close(alert: Alert) {
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
+
+  reset() {
+		this.alerts = [];
+	}
 
 }

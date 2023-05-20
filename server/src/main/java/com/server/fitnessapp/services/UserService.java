@@ -29,7 +29,7 @@ public class UserService {
 
     // check if input password matches password in db
     public Optional<User> loginUser(String email, String password) {
-
+        System.out.println(email + password);
         // find user with email
         User userDb = userRepo.getUser(email);
         System.out.println("user Info: " + userDb);
