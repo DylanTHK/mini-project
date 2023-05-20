@@ -27,6 +27,13 @@ https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-col
 https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
 
 
+## Git
+git branch <branch name>
+git checkout <branch name>
+
+
+
+
 TODO:
 
 ## Mandatory
@@ -39,25 +46,26 @@ TODO:
 16. Deploy database on cloud (MySQL, Mongo, Redis)
 
 ## Optional
-1. Add event listeners for map
-- link to search address bar (look for locations)
-- Input (North, South, East, West) - dropdown menu
-- detect zoom (Optional)
-2. Spring boot API 
-- query NParks RESTful API for list of park names
-- GET locations
-- POST saved locations
-- PUT edit saved locations
-- DELETE edit saved locations (PUT also?)
-
-3. Database (SQL)
-- users table
-- parks location table
-- fitness location table
-
-4. OAuth2 (Open Authorisation)
+1. OAuth2 (Open Authorisation) - 6
 - Create User account
 - Access Google Resourses
+
+2. Integrate Google Calender - 6
+- schedule workouts
+
+3. Send email - 5
+- email reminder for schedule
+
+4. SpringBoot security with JWT - 5
+
+5. Google Maps - 4
+- Add event listeners for map
+- link to search address bar (look for locations)
+- Input (North, South, East, West) - dropdown menu
+
+
+
+7. Apply domain name - 3
 
 
 DONE: 
@@ -76,10 +84,12 @@ DONE:
 12. 
 13. 
 14. 
-15. Deploy on railway
+15. 
+16. 
 
-
-## Optional
+## Optional (4) = 4
 1. Add event listeners for map
 - detect click / location
 - search for fitness corners, display on map
+
+6. UI Component (ng-bootstrap) - 4
