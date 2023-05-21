@@ -1,5 +1,5 @@
 export interface Marker {
-    // position: google.maps.LatLngLiteral
+    position: google.maps.LatLngLiteral
     name: string;
     // vicinity: string;
     

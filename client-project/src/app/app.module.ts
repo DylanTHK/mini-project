@@ -19,6 +19,7 @@ import { WorkoutsComponent } from './schedule/workouts/workouts.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './users/profile/profile.component';
 import { SettingsComponent } from './users/settings/settings.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SettingsComponent } from './users/settings/settings.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

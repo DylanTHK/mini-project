@@ -1,1 +1,73 @@
-<p>schedule works!</p>
+<section class="py-5 border-bottom vw-100" id="features">
+    <div class="container px-5 my-5">
+        <div class="input-group my-4">
+            <input type="text" class="form-control" placeholder="Location">
+            <button class="btn btn-success" type="button">Go!</button>
+        </div>
+
+        <google-map height="500px" 
+        width="100%"
+        [zoom]="zoom"
+        [center]="center"
+        [options]="options"
+        (mapClick)="findLocations($event)">
+            <!-- current location marker (RED) -->
+            <map-marker 
+            #curr="mapMarker"
+            *ngFor="let p of selectedPositions"
+            [position]="p.position"
+            [options]="redMarkerOptions"
+            (mapClick)="openInfo(curr, infoWindow)">
+                <map-info-window #infoWindow="mapInfoWindow">
+                    {{p.name}}
+                    <br>
+                    {{p.position.lat}}, {{p.position.lng}}
+                </map-info-window>
+            </map-marker>
+            <!-- nearby location markers (GREEN) -->
+            <map-marker 
+            #markers="mapMarker"
+            *ngFor="let m of markers"
+            [position]="m.position"
+            [options]="greenMarkerOptions"
+
+            (mapClick)="openInfo(markers, infoWindow)">
+                <map-info-window #infoWindow="mapInfoWindow">
+                    {{m.name}}
+                    <br>
+                    {{m.position.lat}}, {{m.position.lng}}
+                </map-info-window>
+            </map-marker>
+        </google-map>
+
+        <!-- <div class="row mb-4">
+            <div class="text-light col-lg">
+                Zoom: {{zoom}}
+            </div>
+            <div class="col-lg">
+                <div class="">
+                    <button class="btn btn-primary col-1" (click)="zoomIn()">+</button>
+                </div>
+                <div class="">
+                    <button class="btn btn-primary col-1" (click)="zoomOut()">-</button>
+                </div>
+            </div>
+        </div> -->
+        <div class="my-3 d-flex flex-row align-items-center">
+            <div class="text-light">
+                Zoom: {{ zoom }}
+            </div>
+            <div class="btn-group px-3" role="group">
+                    <button class="btn btn-primary" (click)="zoomIn()">+</button>
+                    <button class="btn btn-secondary" (click)="zoomOut()">-</button>
+            </div>
+        </div>
+
+    <!-- TODO: Placeholder for nearby search data -->
+        <h2 class="text-light">Locations Near You</h2>
+        <div class="row mb-12 bg-light" *ngFor="let m of markers">
+            <p class="">{{m.name}}</p>
+            <button class="btn btn-primary"> @Email</button>
+        </div>
+    </div>
+</section>

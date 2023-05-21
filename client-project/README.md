@@ -1,41 +1,48 @@
 # IBF 2022 Batch 1 Mini Project (Client - Angular)
 
 ## Angular Proxy (local testing)
+```
 ng serve --proxy-config src/proxy.config.js
+```
 
 ## BootStrap
+```
 1. ng add @ng-bootstrap/ng-bootstrap
 2. add to angular.json > styles
+```
 
 ## localStorage
+```
 https://stackoverflow.com/questions/47847375/where-to-store-the-user-credentials-in-an-angular-application
-
+```
 
 ## Google maps
+```
 https://angular-maps.com/guides/getting-started/
-npm install @angular/google-maps
+https://timdeschryver.dev/blog/google-maps-as-an-angular-component
+npm i @angular/google-maps@15.2.9
 
-## Google Maps Console
+### Google Maps Console
 https://console.cloud.google.com/apis/credentials?project=big-elysium-384904
 
-## GoogleMaps Places API
+### GoogleMaps Places API
 https://maps.googleapis.com/maps/api/place/nearbysearch/output?location=&location=-33.8670522%2C151.1957362&radius=1500
 https://developers.google.com/maps/documentation/places/web-service/search-nearby#maps_http_places_nearbysearch-txt
 
-## Map Markers
+### Map Markers
 https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-color-8a72131d1207/
 https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
-
+```
 
 ## Git
+```
 git branch <branch name>
 git checkout <branch name>
+```
 
-
-
-
-TODO:
+## TODO:
 ## Mandatory
+```
 5. Application manifest
 
 12. Model data relationship
@@ -43,8 +50,9 @@ TODO:
 14. Must use another database type (Mongo, sessionStorage)
 15. Deploy on railway (angular + springboot)
 16. Deploy database on cloud (MySQL, Mongo, Redis)
-
+```
 ## Optional
+```
 1. OAuth2 (Open Authorisation) - 6
 - Create User account
 - Access Google Resourses
@@ -58,10 +66,11 @@ TODO:
 - link to search address bar (look for locations)
 - Input (North, South, East, West) - dropdown menu
 7. Apply domain name - 3
+```
 
-
-DONE: 
+## DONE: 
 ## Mandatory
+```
 1. Forms (Login)
 2. GET 
 3. SPA (Routing)
@@ -78,11 +87,13 @@ DONE:
 14. 
 15. 
 16. 
-
+```
 ## Optional (4) = 4
+```
 5. Google Maps (TBC)
 - Add event listeners for map
 - detect click / location
 - search for fitness corners, display on map
 
 6. UI Component (ng-bootstrap) - 4
+```
