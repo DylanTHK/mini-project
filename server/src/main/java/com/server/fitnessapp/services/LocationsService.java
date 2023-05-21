@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.server.fitnessapp.models.Location;
+import com.server.fitnessapp.models.GoogleLocation;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -30,9 +30,9 @@ public class LocationsService {
     @Value("${google.api.key}")
     private String LOCATION_KEY;
 
-    public List<Location> searchNearbyLocation(String location, String radius) {
+    public List<GoogleLocation> searchNearbyLocation(String location, String radius) {
         
-        List<Location> locList = new ArrayList<>();
+        List<GoogleLocation> locList = new ArrayList<>();
 
         String url = UriComponentsBuilder.fromUriString(LOCATION_URL)
             .queryParam("keyword", "fitness corner")
@@ -64,7 +64,7 @@ public class LocationsService {
         array.stream()
             .map(m -> m.asJsonObject())
             .forEach(m -> {
-                Location l = Location.toLocation(m);
+                GoogleLocation l = GoogleLocation.toLocation(m);
                 locList.add(l);
             });
 

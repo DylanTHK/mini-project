@@ -73,10 +73,8 @@ export class UserService {
   }
 
   deleteUser(email: string) {
-    const params = new HttpParams()
-      .set("email", email);
-
-    this.httpClient.put(this.url_delete, null, {params})
+    const url = this.url_delete + "/" + email
+    this.httpClient.put(url, null)
       .subscribe(
       data => {
         console.info(data);

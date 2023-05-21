@@ -37,7 +37,7 @@ git checkout <branch name>
 TODO:
 ## Mandatory
 5. Application manifest
-8. Parameterized routes
+
 12. Model data relationship
 13. Demonstrate data integrity and consistency (transactions)
 14. Must use another database type (Mongo, sessionStorage)
@@ -48,22 +48,15 @@ TODO:
 1. OAuth2 (Open Authorisation) - 6
 - Create User account
 - Access Google Resourses
-
 2. Integrate Google Calender - 6
 - schedule workouts
-
 3. Send email - 5
 - email reminder for schedule
-
 4. SpringBoot security with JWT - 5
-
 5. Google Maps - 4
 - Add event listeners for map
 - link to search address bar (look for locations)
 - Input (North, South, East, West) - dropdown menu
-
-
-
 7. Apply domain name - 3
 
 
@@ -76,7 +69,7 @@ DONE:
 5. 
 6. POST to handle json data
 7. Http Request to external API (Google Maps, Google Places)
-8. 
+8. Parameterized routes (use PathVariable)
 9. Query String
 10. Support more than 1 user
 11. Must use MySQL
@@ -87,7 +80,8 @@ DONE:
 16. 
 
 ## Optional (4) = 4
-1. Add event listeners for map
+5. Google Maps (TBC)
+- Add event listeners for map
 - detect click / location
 - search for fitness corners, display on map
 

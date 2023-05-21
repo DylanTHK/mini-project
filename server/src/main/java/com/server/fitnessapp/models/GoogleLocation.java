@@ -2,10 +2,9 @@ package com.server.fitnessapp.models;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonValue;
 
-public class Location {
+
+public class GoogleLocation {
     private Position position;
     private String name;
     
@@ -28,9 +27,9 @@ public class Location {
         return "Location [position=" + position + ", name=" + name + "]";
     }
     
-    public static Location toLocation(JsonObject obj) {
+    public static GoogleLocation toLocation(JsonObject obj) {
 
-        Location l = new Location();
+        GoogleLocation l = new GoogleLocation();
         JsonObject geo = obj.getJsonObject("geometry").getJsonObject("location");
         Position p = new Position();
         p.setLat(geo.getJsonNumber("lat").doubleValue());

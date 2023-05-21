@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.server.fitnessapp.models.Location;
+import com.server.fitnessapp.models.GoogleLocation;
 import com.server.fitnessapp.services.LocationsService;
 
 import jakarta.json.Json;
@@ -19,7 +19,7 @@ import jakarta.json.JsonArrayBuilder;
 
 @RestController
 @RequestMapping(path="/api")
-public class LocationsController {
+public class GoogleMapsController {
     
     @Autowired
     private LocationsService locationSvc;
@@ -32,7 +32,7 @@ public class LocationsController {
         
         System.out.println("making API call");
         // making API call (fitness corners)
-        List<Location> list = locationSvc.searchNearbyLocation(location, radius);
+        List<GoogleLocation> list = locationSvc.searchNearbyLocation(location, radius);
 
         JsonArrayBuilder jsonArray = Json.createArrayBuilder();
 
@@ -47,10 +47,4 @@ public class LocationsController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(jsonArray.build().toString());
     }
-
-    // TODO: Get parks locations
-    
-
 }
-
-

@@ -2,7 +2,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
     <div class="container-xl">
-        <a [routerLink]="['/home']" class="navbar-brand">FitnessForFree</a>
+        <a [routerLink]="['/home']" class="navbar-brand">
+            FitnessForFree
+        </a>
 
         <!-- appears when screen changes to certain size -->
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
@@ -26,7 +28,7 @@
                 <li class="nav-item">
                     <button class="nav-link btn btn-dark" 
                     [routerLinkActive]="['active']" 
-                    [routerLink]="['/locations']"
+                    [routerLink]="['/schedule']"
                     [disabled]="!isLoggedIn">
                         Schedule
                     </button>
@@ -39,6 +41,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                     [routerLinkActive]="['active']"
+                    [routerLink]="['/statistics']"
                     [disabled]="!isLoggedIn">
                         Statistics
                     </button>

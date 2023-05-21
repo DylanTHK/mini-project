@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -104,9 +105,9 @@ public class UsersController {
     }
 
     // Delete user request from Angular - 17/5
-    @PutMapping("/delete-user")
-    public ResponseEntity<String> deleteUser(@RequestParam String email) {
-        // System.out.println(email);
+    @PutMapping("/delete-user/{email}")
+    public ResponseEntity<String> deleteUser(@PathVariable String email) {
+        System.out.println("email received: " + email);
         boolean result = userSvc.removeUser(email);
 
         JsonObjectBuilder respBuilder = Json.createObjectBuilder();
