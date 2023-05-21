@@ -15,28 +15,33 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link" 
-                        aria-current="page" 
-                        [routerLinkActive]="['active']" 
-                        [routerLink]="['/home']">Home</a>
+                    <button class="nav-link btn btn-dark" 
+                    aria-current="page" 
+                    [routerLinkActive]="['active']" 
+                    [routerLink]="['/home']">
+                        Home
+                    </button>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/locations']">
+                    <button class="nav-link btn btn-dark" 
+                    [routerLinkActive]="['active']" 
+                    [routerLink]="['/locations']"
+                    [disabled]="!isLoggedIn">
                         Schedule
-                    </a>
+                    </button>
                 </li>
 
                 <li ngbDropdown>
-                    <a class="nav-link dropdown-toggle" 
-                        ngbDropdownToggle
-                        id="navbarDropdown" 
-                        role="button" 
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        [routerLinkActive]="['active']">
+                    <button class="nav-link dropdown-toggle btn btn-dark" 
+                    ngbDropdownToggle
+                    id="navbarDropdown" 
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    [routerLinkActive]="['active']"
+                    [disabled]="!isLoggedIn">
                         Statistics
-                    </a>
+                    </button>
                     <!-- TODO: fix to match number of workouts -->
                     <ul ngbDropdownMenu 
                         aria-labelledby="navbarDropdown">
@@ -50,9 +55,11 @@
                 </li>
 
                 <li>
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/contribute']">
+                    <button class="nav-link btn btn-dark" 
+                    [routerLinkActive]="['active']" 
+                    [routerLink]="['/contribute']">
                         Contribute
-                    </a>
+                    </button>
                 </li>
             </ul>
 
@@ -60,10 +67,18 @@
                 <!-- check if logged in or not, hide if not logged in -->
                 <ul class="navbar-nav" *ngIf="!isLoggedIn">
                     <li>
-                        <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">Log In</a>
+                        <button class="nav-link btn btn-dark"
+                        [routerLink]="['/login']" 
+                        [routerLinkActive]="['active']">
+                            Log In
+                        </button>
                     </li>
                     <li>
-                        <a class="nav-link" [routerLink]="['/signup']" [routerLinkActive]="['active']">Sign Up</a>
+                        <button class="nav-link btn btn-dark" 
+                        [routerLink]="['/signup']" 
+                        [routerLinkActive]="['active']">
+                            Sign Up
+                    </button>
                     </li>
                 </ul>
     
@@ -81,11 +96,22 @@
                         
                         <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
                             <!-- TODO: update with profile page -->
-                            <li><a class="dropdown-item" >My Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" [routerLink]="['/user/profile']">
+                                    My Profile
+                                </a>
+                            </li>
                             <!-- TODO: update settings with delete user function -->
-                            <li><a class="dropdown-item" >Settings</a></li>
-                            <!-- TODO: update with sign out function -->
-                            <li><a class="dropdown-item" (click)="logOutUser()">Sign Out</a></li>
+                            <li>
+                                <a class="dropdown-item" [routerLink]="['/user/settings']">
+                                    Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" (click)="logOutUser()">
+                                    Sign Out
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

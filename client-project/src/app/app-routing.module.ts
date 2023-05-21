@@ -8,6 +8,8 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { LocationsComponent } from './schedule/locations/locations.component';
 import { WorkoutsComponent } from './schedule/workouts/workouts.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ProfileComponent } from './users/profile/profile.component';
+import { SettingsComponent } from './users/settings/settings.component';
 
 const routes: Routes = [
   // {path: "", redirectTo: "home", pathMatch: "full"},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path: "contribute", component: ContributeComponent},
   {path: "login", component: LoginComponent},
   {path: "signup", component: SignupComponent},
+  {path: "user/profile", component: ProfileComponent},
+  {path: "user/settings", component: SettingsComponent},
 
   {path: "**", redirectTo: "home", pathMatch: "full"}
 ];

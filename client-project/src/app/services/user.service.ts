@@ -34,11 +34,12 @@ export class UserService {
 
   private url_add = "/api/user/register-user";
   private url_login = "/api/user/login";
+  private url_delete = "/api/user/delete-user";
 
   constructor(private httpClient: HttpClient,
     private router: Router) { }
 
-  // Add User to database
+  // Add User to database with form data
   addUser(user: AddUserDetails) {
     // console.info("adding user" + JSON.stringify(user));
     // connect to Spring Boot
@@ -53,10 +54,8 @@ export class UserService {
       });
   }
 
-  // TODO: Login
+  // Get User details with login credentials 
   loginUser(loginData: LoginDetails) {
-    // this.httpClient.get<>(this.url_login)
-    console.info(loginData);
     const params = new HttpParams()
       .set("email", loginData.email)
       .set("password", loginData.password)
@@ -73,8 +72,21 @@ export class UserService {
       });
   }
 
-  logoutUser() {
+  deleteUser(email: string) {
+    const params = new HttpParams()
+      .set("email", email);
 
+    this.httpClient.put(this.url_delete, null, {params})
+      .subscribe(
+      data => {
+        console.info(data);
+        sessionStorage.clear();
+        this.loginStatus.next(false);
+        this.router.navigate(['/home']);
+      }, error => {
+        console.info(error)
+      }
+    )
   }
 
 }

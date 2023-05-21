@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<div class="container-xl vw-100 vh-100">
+    <div class="bg-light mx-5 rounded p-3">
+        <p>
+            Login Status: {{ user.loginStatus }}
+        </p>
+        <p>
+            Sub: {{ user.info.sub }}
+        </p>
+        <p>
+            Name: {{ user.info.name }}
+        </p>
+        <p>
+            Email: {{ user.info.email }}
+        </p>
+        <p>       
+            Picture: {{ user.info.picture }}
+        </p>
+    </div>
+</div>
