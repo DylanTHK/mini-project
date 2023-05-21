@@ -22,7 +22,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/locations']">Locations</a>
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/locations']">
+                        Schedule
+                    </a>
                 </li>
 
                 <li ngbDropdown>
@@ -33,26 +35,28 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                         [routerLinkActive]="['active']">
-                        Workouts
+                        Statistics
                     </a>
                     <!-- TODO: fix to match number of workouts -->
                     <ul ngbDropdownMenu 
                         aria-labelledby="navbarDropdown">
                         <li ngbDropdownItem>
-                            <a class="dropdown-item" [routerLink]="['/locations', 'running']">History</a>
+                            <a class="dropdown-item" [routerLink]="['/statistics', 'week']">Week</a>
                         </li>
                         <li ngbDropdownItem>
-                            <a class="dropdown-item" [routerLink]="['/locations', 'static']">Statistics</a>
+                            <a class="dropdown-item" [routerLink]="['/statistics', 'month']">Month</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/contribute']">Contribute</a>
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/contribute']">
+                        Contribute
+                    </a>
                 </li>
             </ul>
-            <div class="d-flex">
 
+            <div class="d-flex">
                 <!-- check if logged in or not, hide if not logged in -->
                 <ul class="navbar-nav" *ngIf="!isLoggedIn">
                     <li>
@@ -68,16 +72,20 @@
                         <a class="nav-link" 
                             ngbDropdownToggle
                             role="button" 
+                            data-bs-toggle="dropdown" 
                             aria-expanded="false"
                             [routerLinkActive]="['active']">
                             <img class="px-2" src="./assets/images/user_default.png" height="35px" style="border-radius: 50%">
                             {{ currentUser.info.name }}
                         </a>
-                        <!-- TODO: fix to match number of workouts -->
+                        
                         <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+                            <!-- TODO: update with profile page -->
                             <li><a class="dropdown-item" >My Profile</a></li>
+                            <!-- TODO: update settings with delete user function -->
                             <li><a class="dropdown-item" >Settings</a></li>
-                            <li><a class="dropdown-item" >Sign Out</a></li>
+                            <!-- TODO: update with sign out function -->
+                            <li><a class="dropdown-item" (click)="logOutUser()">Sign Out</a></li>
                         </ul>
                     </li>
                 </ul>
