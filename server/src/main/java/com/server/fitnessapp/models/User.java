@@ -2,7 +2,6 @@ package com.server.fitnessapp.models;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
 
 public class User {
     String name;

@@ -5,7 +5,16 @@
 <div class="form-login vw-100">
     <form class="text-center p-5" [formGroup]="loginForm" (submit)="onSubmit()">
         <img class="mb-4" src="../assets/images/FFF_logo.jpg" width="150px">
-        <h1 class="h3 mb- fw-normal">Please Log in</h1>
+        <h1 class="h3 mb- fw-normal">Log in with</h1>
+
+        <!-- TODO: For google Oauth2 -->
+        <button class="btn btn-light btn-height active shadow-sm" style="background-color: white;">
+          <img class="pe-2" src="assets/icons/icon-google.png" alt="GOOGLE">
+          Google
+        </button>
+    
+        <hr>
+        <p>OR</p>
     
         <div class="form-floating">
           <input type="email" 
@@ -26,6 +35,19 @@
             ng-reflect-name="password">
           <label for="floatingPassword">Password</label>
         </div>
+
+        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+        class="text-danger">
+          <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format.</div>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+          class="text-danger mb-3">
+          <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</div>
+        </div>
+        <div *ngIf="invalidAccount" class="text-danger mb-3">
+          Invalid email or password.
+        </div>
     
         <div class="checkbox mb-3">
           <label>
@@ -36,19 +58,6 @@
         <div class="row d-flex align-items-center px-3 mb-3">
           <button class="w-100 btn btn-lg btn-primary col-sm" type="submit">Sign in</button>
           <a class="col-sm" [routerLink]="['/signup']">Register</a>
-        </div>
-
-        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
-          class="text-danger">
-          <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</div>
-          <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format.</div>
-        </div>
-        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
-          class="text-danger">
-          <div *ngIf="loginForm.get('password')?.hasError('required')">Email is required.</div>
-        </div>
-        <div *ngIf="invalidAccount" class="text-danger">
-          Invalid email or password.
         </div>
 
         <p class="mt-5 mb-3 text-muted">&copy; Fitness For Free</p>

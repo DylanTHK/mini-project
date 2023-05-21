@@ -5,8 +5,10 @@ USE project;
 -- to save user details 
 CREATE TABLE users (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  sub VARCHAR(50) NOT NULL,
   name VARCHAR(50) NOT NULL,
   email VARCHAR(100) NOT NULL,
+  picture VARCHAR(250) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

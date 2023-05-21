@@ -24,11 +24,6 @@ export class SignupComponent implements OnInit, OnDestroy{
     };
 
   ngOnInit(): void {
-    // subscription to update created status
-    // this.statusSub$ = this.userSvc.createdSub.subscribe(data => {
-    //   this.created = data;
-    //   console.info(this.created);
-    // });
 
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
@@ -42,7 +37,6 @@ export class SignupComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-      // this.statusSub$.unsubscribe();
   }
 
   // Handle form submission logic here

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.server.fitnessapp.models.User;
+import com.server.fitnessapp.models.UserResponse;
 import com.server.fitnessapp.services.UserService;
 
 import jakarta.json.Json;
@@ -66,22 +67,22 @@ public class UsersController {
 
     // Log in and authenticate user with email - 17/5
     @GetMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody String userData) {
-        JsonReader reader = Json.createReader(new StringReader(userData));
-        JsonObject userJson = reader.readObject();
+    public ResponseEntity<String> loginUser(@RequestParam String email, @RequestParam String password) {
+        // JsonReader reader = Json.createReader(new StringReader(userData));
+        // JsonObject userJson = reader.readObject();
 
-        Optional<User> opt = userSvc.loginUser(userJson.getString("email"), userJson.getString("password"));
+        Optional<UserResponse> opt = userSvc.loginUser(email, password);
 
         JsonObjectBuilder respBuilder = Json.createObjectBuilder();
-        System.out.println(opt.isPresent());
-        System.out.println(opt.isEmpty());
+        // System.out.println(opt.isPresent());
+        // System.out.println(opt.isEmpty());
         if (opt.isPresent()) {
-            User u = opt.get();
+            UserResponse u = opt.get();
             u.toJson();
 
             String resp = respBuilder
                 .add("loginStatus", true)
-                .add("userData", u.toJson())
+                .add("info", u.toJson())
                 .build()
                 .toString();
 

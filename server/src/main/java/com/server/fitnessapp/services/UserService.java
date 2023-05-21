@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.server.fitnessapp.models.User;
+import com.server.fitnessapp.models.UserResponse;
 import com.server.fitnessapp.repositories.UserRepository;
 
 @Service
@@ -28,20 +29,17 @@ public class UserService {
     }
 
     // check if input password matches password in db
-    public Optional<User> loginUser(String email, String password) {
+    public Optional<UserResponse> loginUser(String email, String password) {
         System.out.println(email + password);
         // find user with email
-        User userDb = userRepo.getUser(email);
-        System.out.println("user Info: " + userDb);
-        // System.out.println("input password: " + password);
-        // System.out.println("DB password: " + userDb.getPassword());
+        String passwordDb = userRepo.getPassword(email);
         // check password
-        boolean passwordMatch = userRepo.validatePassword(userDb.getPassword(), password);
+        boolean passwordMatch = userRepo.validatePassword(passwordDb, password);
         System.out.println("Password Match: " + passwordMatch);
 
         // return user if validate = true
         if (passwordMatch) {
-            return Optional.of(userDb);
+            return Optional.of(userRepo.getUser(email));
         } else {
             return Optional.empty();
         }

@@ -53,8 +53,8 @@
             </ul>
             <div class="d-flex">
 
-                <!-- TODO: to check if logged in or not, hide if not logged in -->
-                <ul class="navbar-nav" *ngIf="true">
+                <!-- check if logged in or not, hide if not logged in -->
+                <ul class="navbar-nav" *ngIf="!isLoggedIn">
                     <li>
                         <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">Log In</a>
                     </li>
@@ -63,19 +63,18 @@
                     </li>
                 </ul>
     
-                <!-- TODO: update *ngIf: Show if logged in -->
-                <ul class="navbar-nav" *ngIf="false">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                            id="navbarDropdown" 
+                <ul class="navbar-nav" *ngIf="isLoggedIn">
+                    <li ngbDropdown class="nav-item">
+                        <a class="nav-link" 
+                            ngbDropdownToggle
                             role="button" 
-                            data-bs-toggle="dropdown" 
                             aria-expanded="false"
                             [routerLinkActive]="['active']">
-                            <img src="./assets/images/user_default.png" height="35px" style="border-radius: 50%">
+                            <img class="px-2" src="./assets/images/user_default.png" height="35px" style="border-radius: 50%">
+                            {{ currentUser.info.name }}
                         </a>
                         <!-- TODO: fix to match number of workouts -->
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" >My Profile</a></li>
                             <li><a class="dropdown-item" >Settings</a></li>
                             <li><a class="dropdown-item" >Sign Out</a></li>

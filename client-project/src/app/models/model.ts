@@ -17,6 +17,7 @@ export interface LoginDetails {
 }
 
 export interface UserInfo {
+    loginStatus: boolean;
     info: {
         sub: string;
         email: string;

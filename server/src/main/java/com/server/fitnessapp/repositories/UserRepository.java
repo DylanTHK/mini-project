@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import com.server.fitnessapp.models.User;
+import com.server.fitnessapp.models.UserResponse;
 
 @Repository
 public class UserRepository {
@@ -28,15 +29,24 @@ public class UserRepository {
         return rs.next();
     }
 
+    public String getPassword(String email) {
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_USER_BY_EMAIL, email);
+        String password = "";
+        while(rs.next()) {
+            password = rs.getString("password_hash");
+        }
+        return password;
+    }
 
     // get user from db
-    public User getUser(String email) {
+    public UserResponse getUser(String email) {
         SqlRowSet rs = jdbcTemplate.queryForRowSet(SQL_GET_USER_BY_EMAIL, email);
-        User u = new User();
+        UserResponse u = new UserResponse();
         while(rs.next()) {
+            // u.setSub(rs.getString("sub"));
             u.setName(rs.getString("name"));
             u.setEmail(rs.getString("email"));
-            u.setPassword(rs.getString("password_hash"));
+            // u.setPicture(rs.getString("picture"));
         }
         return u;
     }
