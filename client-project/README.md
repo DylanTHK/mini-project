@@ -34,6 +34,10 @@ https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-col
 https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
 ```
 
+## Calisthenic Workouts
+```
+https://www.healthline.com/health/fitness-exercise/calisthenics
+```
 ## Git
 ```
 git branch <branch name>
@@ -43,28 +47,23 @@ git checkout <branch name>
 ## TODO:
 ## Mandatory
 ```
-5. Application manifest
-
-12. Model data relationship
+12. Model data relationship (User and Token)
 13. Demonstrate data integrity and consistency (transactions)
-14. Must use another database type (Mongo, sessionStorage)
+14. Must use another database type (Mongo (convert workout to mongo), sessionStorage)
 15. Deploy on railway (angular + springboot)
-16. Deploy database on cloud (MySQL, Mongo, Redis)
+16. Deploy database on cloud (MySQL, Mongo)
 ```
 ## Optional
 ```
 1. OAuth2 (Open Authorisation) - 6
 - Create User account
 - Access Google Resourses
-2. Integrate Google Calender - 6
+2. Integrate Google Calender - 6 
 - schedule workouts
-3. Send email - 5
+3. Send email - 5 (Priority!)
 - email reminder for schedule
 4. SpringBoot security with JWT - 5
-5. Google Maps - 4
-- Add event listeners for map
-- link to search address bar (look for locations)
-- Input (North, South, East, West) - dropdown menu
+
 7. Apply domain name - 3
 ```
 
@@ -75,7 +74,7 @@ git checkout <branch name>
 2. GET 
 3. SPA (Routing)
 4. Abstract functionalities to Service
-5. 
+5. Application manifest
 6. POST to handle json data
 7. Http Request to external API (Google Maps, Google Places)
 8. Parameterized routes (use PathVariable)
@@ -88,9 +87,9 @@ git checkout <branch name>
 15. 
 16. 
 ```
-## Optional (4) = 4
+## Optional (4 + 4) = 8
 ```
-5. Google Maps (TBC)
+5. Google Maps - 4
 - Add event listeners for map
 - detect click / location
 - search for fitness corners, display on map

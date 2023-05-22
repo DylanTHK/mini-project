@@ -1,10 +1,10 @@
-<section class="py-5 border-bottom vw-100 bg-dark" id="features">
-    <div class="container px-5 my-5">
+<section class="border-bottom vw-100 bg-dark mb-5" id="features">
+    <div class="container-xl px-5 my-5">
         <!-- <div class="input-group my-4">
             <input type="text" class="form-control" placeholder="Location">
             <button class="btn btn-success" type="button">Go!</button>
         </div> -->
-        <h2 class="text-light me-3">1. Select your preferred location</h2>
+        <h2 class="text-light me-3">Select your preferred location</h2>
         <google-map 
         height="500px" 
         width="100%"
@@ -50,8 +50,11 @@
                     <button class="btn btn-secondary" (click)="zoomOut()">-</button>
             </div>
         </div>
+        <!-- Progress Bar -->
         <p><ngb-progressbar [showValue]="true" type="success" [value]="progressBarValue"></ngb-progressbar></p>
-        <!-- add progress bars here? -->
-        <router-outlet></router-outlet>
+        <!-- router outlet for children routes -->
+        <div style="margin-bottom: 100px;">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </section>
