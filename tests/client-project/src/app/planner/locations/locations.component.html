@@ -1,0 +1,43 @@
+<div class="d-flex flex-row align-items-center">
+    <h2 class="text-light me-3">Confirm your selection</h2>
+    <!-- TODO: add sorting function -->
+    <!-- <button class="btn btn-primary">Sort</button> -->
+</div>
+<div class="row mb-12 bg-light rounded mb-1" >
+    <!-- no locations found -->
+    <div *ngIf="markers.length === 0 && !pristine">
+        <p class="">
+            No Locations Found, proceed to select workout
+        </p>
+        <button class="btn btn-primary"
+            (click)="selectWorkout(-1)">
+            Select Workout
+        </button>
+    </div>
+    <!-- list of locations found -->
+    <!-- <div *ngFor="let m of markers; let idx=index">
+        <p class="">Name: {{m.name}}</p>
+        <p class="">Distance: m</p>
+        <button class="btn btn-primary">
+            Save
+        </button>
+        <button class="btn btn-primary"
+            (click)="selectWorkout(idx)">
+            Select Workout
+        </button>
+    </div> -->
+    <div class="container pt-3">
+        <div *ngFor="let m of markers; let idx=index" 
+        class="mb-3 pb-3 d-flex align-items-center px-5 border-bottom">
+          <div>
+            <p class="mb-1">Name: {{ m.name }}</p>
+            <p class="mb-1">Distance: {{ m.name }}m</p>
+          </div>
+          <div class="ms-auto">
+              <button class="btn btn-primary me-2" (click)="saveLocation(idx)">Save</button>
+              <button class="btn btn-primary" (click)="selectWorkout(idx)">Select Workout</button>
+          </div>
+        </div>
+    </div>
+</div>
+
