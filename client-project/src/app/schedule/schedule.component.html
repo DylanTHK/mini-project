@@ -1,11 +1,12 @@
-<section class="py-5 border-bottom vw-100" id="features">
+<section class="py-5 border-bottom vw-100 bg-dark" id="features">
     <div class="container px-5 my-5">
         <div class="input-group my-4">
             <input type="text" class="form-control" placeholder="Location">
             <button class="btn btn-success" type="button">Go!</button>
         </div>
 
-        <google-map height="500px" 
+        <google-map 
+        height="500px" 
         width="100%"
         [zoom]="zoom"
         [center]="center"
@@ -40,19 +41,6 @@
             </map-marker>
         </google-map>
 
-        <!-- <div class="row mb-4">
-            <div class="text-light col-lg">
-                Zoom: {{zoom}}
-            </div>
-            <div class="col-lg">
-                <div class="">
-                    <button class="btn btn-primary col-1" (click)="zoomIn()">+</button>
-                </div>
-                <div class="">
-                    <button class="btn btn-primary col-1" (click)="zoomOut()">-</button>
-                </div>
-            </div>
-        </div> -->
         <div class="my-3 d-flex flex-row align-items-center">
             <div class="text-light">
                 Zoom: {{ zoom }}
@@ -64,10 +52,18 @@
         </div>
 
     <!-- TODO: Placeholder for nearby search data -->
-        <h2 class="text-light">Locations Near You</h2>
-        <div class="row mb-12 bg-light" *ngFor="let m of markers">
-            <p class="">{{m.name}}</p>
-            <button class="btn btn-primary"> @Email</button>
+        <div class="d-flex flex-row align-items-center">
+            <h2 class="text-light me-3">Locations Near You</h2>
+            <button class="btn btn-primary">Sort</button>
         </div>
+        <!-- <div class="row mb-12 bg-light rounded mb-1" *ngFor="let m of markers">
+            <p class="">{{m.name}}</p>
+            <p class="">Distance: m</p>
+            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-primary"></button>
+            <button class="btn btn-primary">Schedule</button>
+
+        </div> -->
+        <router-outlet></router-outlet>
     </div>
 </section>

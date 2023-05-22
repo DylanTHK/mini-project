@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { LocationsComponent } from './schedule/locations/locations.component';
-import { WorkoutsComponent } from './schedule/workouts/workouts.component';
+import { WorkoutsComponent } from './workouts/workouts.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './users/profile/profile.component';
 import { SettingsComponent } from './users/settings/settings.component';
