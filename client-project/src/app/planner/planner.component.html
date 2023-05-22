@@ -1,10 +1,10 @@
 <section class="py-5 border-bottom vw-100 bg-dark" id="features">
     <div class="container px-5 my-5">
-        <div class="input-group my-4">
+        <!-- <div class="input-group my-4">
             <input type="text" class="form-control" placeholder="Location">
             <button class="btn btn-success" type="button">Go!</button>
-        </div>
-
+        </div> -->
+        <h2 class="text-light me-3">1. Select your preferred location</h2>
         <google-map 
         height="500px" 
         width="100%"
@@ -50,20 +50,8 @@
                     <button class="btn btn-secondary" (click)="zoomOut()">-</button>
             </div>
         </div>
-
-    <!-- TODO: Placeholder for nearby search data -->
-        <div class="d-flex flex-row align-items-center">
-            <h2 class="text-light me-3">Locations Near You</h2>
-            <button class="btn btn-primary">Sort</button>
-        </div>
-        <!-- <div class="row mb-12 bg-light rounded mb-1" *ngFor="let m of markers">
-            <p class="">{{m.name}}</p>
-            <p class="">Distance: m</p>
-            <button class="btn btn-primary">Save</button>
-            <button class="btn btn-primary"></button>
-            <button class="btn btn-primary">Schedule</button>
-
-        </div> -->
+        <p><ngb-progressbar [showValue]="true" type="success" [value]="progressBarValue"></ngb-progressbar></p>
+        <!-- add progress bars here? -->
         <router-outlet></router-outlet>
     </div>
 </section>

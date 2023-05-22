@@ -3,13 +3,15 @@ import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Marker } from '../models/model';
 import { Subscription } from 'rxjs';
 import { GoogleMapsService } from '../services/google-maps.service';
+import { Router } from '@angular/router';
+import { PlannerService } from '../services/planner.service';
 
 @Component({
-  selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+  selector: 'app-planner',
+  templateUrl: './planner.component.html',
+  styleUrls: ['./planner.component.css']
 })
-export class ScheduleComponent implements OnInit, OnDestroy  {
+export class PlannerComponent implements OnInit, OnDestroy  {
   @ViewChild (GoogleMap, { static: false }) map!: GoogleMap;
   // @ViewChild(MapInfoWindow, { static: false }) infoWindow!: MapInfoWindow;
 
@@ -42,7 +44,13 @@ export class ScheduleComponent implements OnInit, OnDestroy  {
 
   locationSub$!: Subscription;
 
-  constructor(private googleMapsSvc: GoogleMapsService) { }
+  progressBarValue: number = 0;
+  progressSub$!: Subscription;
+
+  constructor (
+    private googleMapsSvc: GoogleMapsService,
+    private router: Router,
+    private plannerSvc: PlannerService) { }
 
   ngOnInit(): void {
 
@@ -52,10 +60,17 @@ export class ScheduleComponent implements OnInit, OnDestroy  {
         console.info("markers: ", this.markers);
       }
     )
+    this.progressSub$ = this.plannerSvc.progressSub.subscribe(
+      (data: number) => {
+        this.progressBarValue = data;
+        console.info(this.progressBarValue);
+      }
+    )
   }
 
   ngOnDestroy(): void {
       this.locationSub$.unsubscribe();
+      this.progressSub$.unsubscribe();
   }
 
   zoomIn() {
@@ -81,13 +96,14 @@ export class ScheduleComponent implements OnInit, OnDestroy  {
       const pos = event.latLng.toJSON()
       console.info(pos);
       this.googleMapsSvc.getNearbyLocations(pos.lat, pos.lng);
-
+      this.router.navigate(['/planner']);
     }
-    
+    this.plannerSvc.resetProgress();
   }
 
   openInfo(marker: MapMarker, infoWindow: MapInfoWindow) {
     console.info(marker);
     infoWindow.open(marker);
   }
+
 }

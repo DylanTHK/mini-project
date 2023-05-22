@@ -1,0 +1,42 @@
+
+<p class="text-light">schedule works!</p>
+
+<!-- add form -->
+    <!-- add date picker -->
+
+    <!-- add time picker -->
+
+<div *ngFor="let m of markers" class="bg-light rounded">
+    <p>
+        {{ m.name }}
+    </p>
+    <p>
+        {{ m.position.lat }}
+    </p>
+    <p>
+        {{ m.position.lng }}
+    </p>
+</div>
+<div class="bg-light rounded">
+    <form class="" [formGroup]="scheduleForm" (submit)="submitSchedule()">
+        
+        <div class="form-floating">
+            <input type="date" 
+              class="form-control" 
+              id="floatingInput" 
+              placeholder="name@example.com"
+              formControlName="email">
+            <label for="floatingInput">Email address</label>
+        </div>
+
+        <!-- initiate submitSchedule() -->
+        <button 
+        class="btn btn-primary" 
+        type="submit">
+            Confirm
+        </button>
+    </form>
+</div>
+
+
+

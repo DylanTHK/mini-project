@@ -28,9 +28,9 @@
                 <li class="nav-item">
                     <button class="nav-link btn btn-dark" 
                     [routerLinkActive]="['active']" 
-                    [routerLink]="['/schedule']"
+                    [routerLink]="['/planner']"
                     [disabled]="!isLoggedIn">
-                        Schedule
+                        Planner
                     </button>
                 </li>
 
@@ -38,30 +38,8 @@
                     <button class="nav-link btn btn-dark" 
                     [routerLinkActive]="['active']" 
                     [routerLink]="['/workouts']">
-                        Exercises
-                    </button>
-                </li>
-                <li ngbDropdown>
-                    <button class="nav-link dropdown-toggle btn btn-dark" 
-                    ngbDropdownToggle
-                    id="navbarDropdown" 
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    [routerLinkActive]="['active']"
-                    [routerLink]="['/workouts']"
-                    [disabled]="!isLoggedIn">
                         Workouts
                     </button>
-                    <!-- TODO: fix to match number of workouts -->
-                    <ul ngbDropdownMenu 
-                        aria-labelledby="navbarDropdown">
-                        <li ngbDropdownItem>
-                            <a class="dropdown-item" [routerLink]="['/statistics', 'week']">Week</a>
-                        </li>
-                        <li ngbDropdownItem>
-                            <a class="dropdown-item" [routerLink]="['/statistics', 'month']">Month</a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li ngbDropdown>
