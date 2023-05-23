@@ -12,6 +12,8 @@ export class GoogleMapsService {
   private url = "/api/fitness";
   
   locationSubject = new Subject<Marker[]>();
+  distanceSubject = new Subject<number[]>();
+  distances: number[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,10 +26,30 @@ export class GoogleMapsService {
       .set("location", location)
 
     firstValueFrom(this.httpClient.get<Marker[]>(this.url, {params}))
-      .then(data => {
+      .then((data: Marker[]) => {
         console.info(data);
         this.locationSubject.next(data);
+
+        const reference: google.maps.LatLngLiteral = { lat: lat, lng: lng };
+        this.distances = [];
+        data.forEach(marker => {
+          const distance: number = this.calculateDistance(reference, marker.position);
+          this.distances.push(Math.ceil(distance));
+        })
+        console.info(this.distances);
+        this.distanceSubject.next(this.distances);
       });
+  }
+
+  calculateDistance(start: google.maps.LatLngLiteral, end: google.maps.LatLngLiteral ) {
+    const point1 = new google.maps.LatLng(start);
+    const point2 = new google.maps.LatLng(end);
+    let distance: number = 0;
+    const calculatedDistance = 
+      google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
+
+    console.info(calculatedDistance);
+    return calculatedDistance;
   }
 }
 

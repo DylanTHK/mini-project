@@ -13,7 +13,9 @@ import { PlannerService } from 'src/app/services/planner.service';
 export class LocationsComponent implements OnInit, OnDestroy {
   pristine = true;
   markers: Marker[] = [];
+  distances: number[] = [];
   locationSub$!: Subscription;
+  distanceSub$!: Subscription;
 
   constructor(private googleMapsSvc: GoogleMapsService,
     private router: Router,
@@ -26,7 +28,13 @@ export class LocationsComponent implements OnInit, OnDestroy {
           this.markers = data;
           this.pristine = false;
         }
+      );
+      this.distanceSub$ = this.googleMapsSvc.distanceSubject.subscribe(
+        distanceData => {
+          this.distances = distanceData;
+        }
       )
+
   }
 
   ngOnDestroy(): void {

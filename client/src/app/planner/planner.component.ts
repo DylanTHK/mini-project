@@ -6,6 +6,8 @@ import { GoogleMapsService } from '../services/google-maps.service';
 import { Router } from '@angular/router';
 import { PlannerService } from '../services/planner.service';
 
+declare const google: any;
+
 @Component({
   selector: 'app-planner',
   templateUrl: './planner.component.html',
@@ -15,8 +17,13 @@ export class PlannerComponent implements OnInit, OnDestroy  {
   @ViewChild (GoogleMap, { static: false }) map!: GoogleMap;
   // @ViewChild(MapInfoWindow, { static: false }) infoWindow!: MapInfoWindow;
 
+  progressBarValue: number = 0;
+  progressSub$!: Subscription;
+
   markers: Marker[] = [];
   selectedPositions: Marker[] = [];
+  locationSub$!: Subscription;
+
 
   redMarkerOptions: google.maps.MarkerOptions = {
     icon: {url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'}
@@ -42,11 +49,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
     draggableCursor:''
   };
 
-  locationSub$!: Subscription;
-
-  progressBarValue: number = 0;
-  progressSub$!: Subscription;
-
   constructor (
     private googleMapsSvc: GoogleMapsService,
     private router: Router,
@@ -63,7 +65,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
     this.progressSub$ = this.plannerSvc.progressSub.subscribe(
       (data: number) => {
         this.progressBarValue = data;
-        console.info(this.progressBarValue);
       }
     )
   }
@@ -107,10 +108,16 @@ export class PlannerComponent implements OnInit, OnDestroy  {
   }
 
   calculateDistance() {
-    const mexicoCity = new google.maps.LatLng(19.432608, -99.133209);
-    const jacksonville = new google.maps.LatLng(40.730610, -73.935242);
-    const distance = google.maps.geometry.spherical.computeDistanceBetween(mexicoCity, jacksonville);
-    console.info(distance);
+    const location1: google.maps.LatLngLiteral = { lat: 37.7749, lng: -122.4194 };
+    const location2: google.maps.LatLngLiteral = { lat: 34.0522, lng: -118.2437 };
+    const point1 = new google.maps.LatLng(location1);
+    const point2 = new google.maps.LatLng(location2);
+    let distance: number = 0;
+    const calculatedDistance = google.maps.geometry.spherical.computeDistanceBetween(
+      point1,
+      point2
+    );
+    console.info(calculatedDistance);
   }
 
 }

@@ -1,7 +1,6 @@
 export interface Marker {
     position: google.maps.LatLngLiteral
     name: string;
-    // distance: number;    
 }
 
 export interface AddUserDetails {

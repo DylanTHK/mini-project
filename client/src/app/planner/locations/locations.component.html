@@ -21,7 +21,7 @@
             class="mb-3 pb-3 d-flex align-items-center px-5 border-bottom">
               <div>
                 <p class="mb-1">Name: {{ m.name }}</p>
-                <p class="mb-1">Distance: {{ m.name }}m</p>
+                <p class="mb-1">Distance: {{ distances[idx] }}m</p>
               </div>
               <div class="ms-auto">
                   <button class="btn btn-primary me-2" (click)="saveLocation(idx)">Save</button>
