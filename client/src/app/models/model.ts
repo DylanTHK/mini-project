@@ -40,3 +40,15 @@ export interface Workout {
     url: string;
     desc: string[];
 }
+
+export interface WorkoutData {
+    name: string;
+    selected: boolean;
+    quantity: number;
+}
+
+export interface ScheduledData {
+    workouts: WorkoutData[];
+    sets: number;
+    location: Marker;
+}

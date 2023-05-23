@@ -1,45 +1,51 @@
+<div class="container">
+    <h2 class="text-light me-3">Confirm your Workout</h2>
 
-<p class="text-light">schedule works!</p>
+    <!-- print details (location) -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Workout Details</h3>
+        </div>
+        <div class="card-body">
+            <div class="card p-3 mb-3">
+                <h4>Location</h4>
+                <div *ngFor="let m of markers" class="">
+                    <p>
+                        {{ m.name }}
+                    </p>
+                </div>
+            </div>
+            <div class="card p-3">
+                <h4>Workout - Sets: {{sets}}</h4>
+                <div *ngFor="let w of workouts" class="">
+                    <p>
+                        {{ w.name }} - {{ w.quantity }}
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<!-- add form -->
-    <!-- add date picker -->
+    </div>
 
-    <!-- add time picker -->
+<!-- form -->
 
-<!-- print details (location) -->
-<div *ngFor="let m of markers" class="bg-light rounded">
-    <p>
-        {{ m.name }}
-    </p>
-    <p>
-        {{ m.position.lat }}
-    </p>
-    <p>
-        {{ m.position.lng }}
-    </p>
-</div>
-
-<!-- print details (workout) -->
-
-
-<div class="bg-light rounded">
-    <form class="" [formGroup]="scheduleForm" (submit)="submitSchedule()">
-        
-        <div class="form-floating">
-            <input type="date" 
-              class="form-control" 
-              id="floatingInput" 
-              placeholder="name@example.com"
-              formControlName="email">
-            <label for="floatingInput">Email address</label>
+    <form class="card" [formGroup]="dateTimeForm" (submit)="submitWorkoutData()">
+        <div class="card p-3 mb-3">
+            <label>Date:</label>
+            <input type="date" formControlName="date">
+          
+            <label>Time:</label>
+            <input type="time" formControlName="time">
         </div>
 
         <!-- initiate submitSchedule() -->
-        <button 
-        class="btn btn-success" 
-        type="submit">
-            Confirm
-        </button>
+        <div class="d-flex justify-content-end">
+            <button 
+            class="btn btn-success" 
+            type="submit">
+                Confirm
+            </button>
+        </div>
     </form>
 </div>
 
