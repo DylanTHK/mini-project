@@ -33,3 +33,10 @@ export interface Alert {
 	type: string;
 	message: string;
 }
+
+export interface Workout {
+    label: string;
+    name: string;
+    url: string;
+    desc: string[];
+}

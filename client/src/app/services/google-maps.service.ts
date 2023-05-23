@@ -36,7 +36,6 @@ export class GoogleMapsService {
           const distance: number = this.calculateDistance(reference, marker.position);
           this.distances.push(Math.ceil(distance));
         })
-        console.info(this.distances);
         this.distanceSubject.next(this.distances);
       });
   }

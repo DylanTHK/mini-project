@@ -1,7 +1,62 @@
-<div class="row mb-12 bg-light rounded mb-1" >
-    <p>select-workout works!</p>
-    <button class="btn btn-primary"
-    (click)="scheduleWorkouts()">
-        Schedule
-    </button>
+
+<div class="container-xl">
+    <form [formGroup]="workoutForm" (ngSubmit)="submitForm()">
+        <div class="container mt-4">
+            <div formArrayName="workouts">
+                <div *ngFor="let workout of workoutControls; let i = index" [formGroupName]="i">
+                    <div class="card mb-3">
+                        <div class="card-body d-flex justify-content-between">
+                            <div id="left-card">
+                                <img [src]="workouts[i].url" alt="{{ workout.value.name }}" width="200" height="200" class="mb-3">
+                            </div>
+                            <div id="right-card">
+                                <div class="d-flex">
+                                    <p class="fw-bold">{{ workout.value.name }}</p>
+                                    <input class="form-check-input mx-3" type="checkbox" formControlName="selected">
+                                    <label class="form-check-label"></label>
+                                </div>
+                                <div class="form-group">
+                                <label for="quantity">Qty:</label>
+                                <input type="number" class="form-control" id="quantity" formControlName="quantity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- select number of sets -->
+            <div class="card mb-3 p-3">
+                <label for="sets" class="">Sets: </label>
+                <input type="number" class="form-control" id="sets" formControlName="sets">
+            </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success mx-3">Submit</button>
+            <button type="button" class="btn btn-secondary ml-2" (click)="openModal(content)">View Workouts</button>
+          </div>
+        </div>
+    </form>
+      
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Workouts</h4>
+            <button type="button" class="close btn btn-secondary" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group">
+            <li class="list-group-item" *ngFor="let workout of workoutControls">
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" [checked]="workout.value.selected" disabled>
+                <label class="form-check-label">{{ workout.value.name }} - Quantity: {{ workout.value.quantity }}</label>
+                </div>
+            </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="modal.dismiss()">Confirm</button>
+        </div>
+    </ng-template>
 </div>
