@@ -1,5 +1,5 @@
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="row">
         <div class="container-xl bg-light rounded">
           <div class="px-3 my-3">
@@ -56,4 +56,23 @@
           </div>
         </div>
     </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="container-xl bg-light rounded">
+        <div class="px-3 my-3" *ngFor="let w of standardWorkouts; let idx=index">
+          <h3> {{ w.name }} </h3>
+          <div class="d-flex flex-row align-items-center">
+            <img src="{{ w.url }}"
+            alt="{{ w.label }}" class="rounded me-5 d-block">
+            <ul style="list-style-type: none;">
+              <li *ngFor="let d of w.desc; let i=index">
+                {{ i+1 }}. {{ d }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
   </div>
+</div>

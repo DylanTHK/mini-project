@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Marker, ScheduledData, UserInfo, Workout, WorkoutData } from 'src/app/models/model';
 import { PlannerService } from 'src/app/services/planner.service';
 import { RepoService } from 'src/app/services/repo.service';
@@ -11,6 +12,9 @@ import { RepoService } from 'src/app/services/repo.service';
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
+
+  added!: boolean;
+  addScheduledWorkoutsSub$!: Subscription;
 
   markers: Marker[] = [];
   workouts: WorkoutData[] = [];
@@ -35,6 +39,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       console.info(this.workouts);
       this.sets = Number(sessionStorage.getItem("currentSets")) ? Number(sessionStorage.getItem("currentSets")) : 0;
 
+
       // initialise form
       this.dateTimeForm = this.fb.group({
         date: this.fb.control("2023-11-01"),
@@ -44,9 +49,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      
+    
   }
 
+  // Sends scheduled data to SB
   submitWorkoutData() {
     this.increaseProgressBar();
     const locJson = sessionStorage.getItem("location");
@@ -62,13 +68,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       time: this.dateTimeForm.value.time,
       email: user.info.email
     } as ScheduledData;
+    // FIXME: Remove
     console.info(data);
-    console.info("scheduling workout")
-    const added: boolean = this.repoSvc.addScheduledWorkout(data);
-    if (added) {
-      this.resetSession();
-      // this.router.navigate(['/planner', 'confirm'])
-    }
+    // console.info("scheduling workout")
+    
+    this.repoSvc.addScheduledWorkout(data);
+    this.resetSession();
+    this.router.navigate(['/planner', 'confirm'])
+    
   }
 
   increaseProgressBar() {

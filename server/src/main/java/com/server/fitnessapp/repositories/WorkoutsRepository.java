@@ -2,6 +2,7 @@ package com.server.fitnessapp.repositories;
 
 import java.util.List;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,8 +25,13 @@ public class WorkoutsRepository {
         return allWorkouts;
     }
 
-    public void insertScheduledWorkout() {
+    public Document insertScheduledWorkout(Document workoutDoc) {
+        System.out.println("inserting document");
+        return mongoTemplate.insert(workoutDoc, COLLECTION_SCHEDULED_WORKOUTS);
+    }
 
+    public void getScheduledWorkout(String email) {
+        System.out.println("retrieving document");
     }
 
 }
