@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Marker, ScheduledData, Workout, WorkoutData } from 'src/app/models/model';
+import { Marker, ScheduledData, UserInfo, Workout, WorkoutData } from 'src/app/models/model';
 import { PlannerService } from 'src/app/services/planner.service';
 import { RepoService } from 'src/app/services/repo.service';
 
@@ -50,20 +50,25 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   submitWorkoutData() {
     this.increaseProgressBar();
     const locJson = sessionStorage.getItem("location");
+    const userJson = sessionStorage.getItem("user");
     const marker: Marker = locJson ? JSON.parse(locJson) : {};
-    
+    const user: UserInfo = userJson ? JSON.parse(userJson): {};
+
     const data = {
       workouts: this.workouts,
       sets: this.sets,
       location: marker,
       date: this.dateTimeForm.value.date,
       time: this.dateTimeForm.value.time,
+      email: user.info.email
     } as ScheduledData;
     console.info(data);
     console.info("scheduling workout")
-    this.repoSvc.addScheduledWorkout(data);
-    this.resetSession();
-    // this.router.navigate(['/planner', 'confirm'])
+    const added: boolean = this.repoSvc.addScheduledWorkout(data);
+    if (added) {
+      this.resetSession();
+      // this.router.navigate(['/planner', 'confirm'])
+    }
   }
 
   increaseProgressBar() {

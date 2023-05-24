@@ -1,3 +1,6 @@
+import { Time } from "@angular/common";
+import { Timestamp } from "rxjs";
+
 export interface Marker {
     position: google.maps.LatLngLiteral
     name: string;
@@ -51,4 +54,7 @@ export interface ScheduledData {
     workouts: WorkoutData[];
     sets: number;
     location: Marker;
+    date: Date;
+    time: Time;
+    email: string;
 }

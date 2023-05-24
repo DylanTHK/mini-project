@@ -104,15 +104,11 @@ export class SelectWorkoutComponent implements OnInit {
     sessionStorage.setItem("currentWorkouts", JSON.stringify(selectedWorkouts));
     sessionStorage.setItem("currentSets", JSON.stringify(selectedSets));
     this.router.navigate(['/planner', 'schedule']);
+    this.increaseProgressBar();
   }
 
   get workoutControls() {
     return (this.workoutForm.get('workouts') as FormArray).controls;
-  }
-
-  scheduleWorkouts() {
-    this.router.navigate(['/planner', 'schedule']);
-    this.increaseProgressBar();
   }
 
   increaseProgressBar() {

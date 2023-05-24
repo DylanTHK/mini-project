@@ -45,6 +45,12 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- MongoDB Starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
 		<!-- Spring Data Redis (Access+Driver) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

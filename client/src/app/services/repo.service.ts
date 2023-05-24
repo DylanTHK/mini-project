@@ -9,11 +9,12 @@ export class RepoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  addScheduledWorkout(data: ScheduledData) {
-
+  addScheduledWorkout(data: ScheduledData): boolean {
+    
+    return false;
   }
 
-  // add loca
+  // add location (post)
   addSavedLocation(location: Marker) {
 
   }
