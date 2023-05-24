@@ -84,6 +84,12 @@ public class ScheduledWorkout {
             .add("workouts", workoutsArray)
             .build();
     }
+
+    public static ScheduledWorkout create() {
+        
+
+        return null;
+    }
     
     
 }

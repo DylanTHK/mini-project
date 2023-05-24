@@ -1,7 +1,7 @@
 
 <div class="container-xl">
     <form [formGroup]="workoutForm" (ngSubmit)="submitForm()">
-        <div class="container mt-4">
+        <div class="container-fluid mt-4 w-50">
             <div formArrayName="workouts">
                 <div *ngFor="let workout of workoutControls; let i = index" [formGroupName]="i">
                     <div class="card mb-3">

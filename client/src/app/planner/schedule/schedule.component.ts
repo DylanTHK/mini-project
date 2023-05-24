@@ -79,7 +79,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   increaseProgressBar() {
-    this.plannerSvc.increaseProgress();
+    this.plannerSvc.updateProgress(100);
   }
 
   resetSession() {

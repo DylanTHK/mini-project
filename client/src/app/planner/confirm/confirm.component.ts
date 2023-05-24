@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
   selector: 'app-confirm',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class ConfirmComponent {
 
+  constructor(private plannerSvc: PlannerService) { }
+
+  addToCalendar() {
+    this.plannerSvc.resetProgress();
+  }
 }

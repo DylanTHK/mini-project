@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Marker } from 'src/app/models/model';
 import { GoogleMapsService } from 'src/app/services/google-maps.service';
 import { PlannerService } from 'src/app/services/planner.service';
+import { RepoService } from 'src/app/services/repo.service';
 
 @Component({
   selector: 'app-locations',
@@ -19,7 +20,8 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
   constructor(private googleMapsSvc: GoogleMapsService,
     private router: Router,
-    private plannerSvc: PlannerService) { };
+    private plannerSvc: PlannerService,
+    private repoSvc: RepoService) { };
 
   ngOnInit(): void {
       this.pristine = true;
@@ -53,7 +55,8 @@ export class LocationsComponent implements OnInit, OnDestroy {
       sessionStorage.setItem("location", JSON.stringify(this.markers[index]));
       this.router.navigate(['/planner', 'select']);
     }
-    this.increaseProgressBar();
+    this.increaseProgressBar(33);
+    this.repoSvc.getStandardWorkout();
     
   }
 
@@ -61,9 +64,9 @@ export class LocationsComponent implements OnInit, OnDestroy {
     console.info("saving" + this.markers[index]);
   }
 
-  increaseProgressBar() {
+  increaseProgressBar(value: number) {
     console.info("increasing")
-    this.plannerSvc.increaseProgress();
+    this.plannerSvc.updateProgress(value);
   }
   
 }

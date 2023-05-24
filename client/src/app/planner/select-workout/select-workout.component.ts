@@ -2,17 +2,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { Workout } from 'src/app/models/model';
 import { PlannerService } from 'src/app/services/planner.service';
+import { RepoService } from 'src/app/services/repo.service';
 
 @Component({
   selector: 'app-select-workout',
   templateUrl: './select-workout.component.html',
   styleUrls: ['./select-workout.component.css']
 })
-export class SelectWorkoutComponent implements OnInit {
+export class SelectWorkoutComponent implements OnInit, OnDestroy {
 
-  simpleWorkout = ["Jump Squat", "Push Ups", "Sit Ups", "Pull Ups"];
+  // simpleWorkout = ["Jump Squat", "Push Ups", "Sit Ups", "Pull Ups"];
 
   workouts: Workout[] = [ 
     { 
@@ -68,7 +70,8 @@ export class SelectWorkoutComponent implements OnInit {
   constructor(private plannerSvc: PlannerService,
     private router: Router,
     private fb: FormBuilder,
-    private modalSvc: NgbModal) { }
+    private modalSvc: NgbModal,
+    private repoSvc: RepoService) { }
 
   ngOnInit(): void {
     this.workoutForm = this.fb.group({
@@ -77,6 +80,9 @@ export class SelectWorkoutComponent implements OnInit {
     });
 
     this.addWorkoutsToForm();
+  }
+
+  ngOnDestroy(): void {
   }
 
   addWorkoutsToForm() {
@@ -113,7 +119,7 @@ export class SelectWorkoutComponent implements OnInit {
 
   increaseProgressBar() {
     console.info("increasing")
-    this.plannerSvc.increaseProgress();
+    this.plannerSvc.updateProgress(66);
   }
 
 }
