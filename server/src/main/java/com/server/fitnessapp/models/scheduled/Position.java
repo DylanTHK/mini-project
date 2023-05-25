@@ -1,4 +1,4 @@
-package com.server.fitnessapp.models.scheduledWorkout;
+package com.server.fitnessapp.models.scheduled;
 
 public class Position {
     Double lat;

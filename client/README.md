@@ -60,7 +60,7 @@ https://www.itsolutionstuff.com/post/angular-15-google-social-login-tutorial-exa
 ```
 12. Model data relationship (User and Token)
 13. Demonstrate data integrity and consistency (transactions)
-14. Must use another database type (Mongo (convert workout to mongo), sessionStorage)
+
 15. Deploy on railway (angular + springboot)
 16. Deploy database on cloud (MySQL, Mongo)
 ```
@@ -94,7 +94,7 @@ https://www.itsolutionstuff.com/post/angular-15-google-social-login-tutorial-exa
 11. Must use MySQL
 12. 
 13. 
-14. 
+14. Must use another database type (Mongo (convert workout to mongo), sessionStorage) 
 15. 
 16. 
 ```

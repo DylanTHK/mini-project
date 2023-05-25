@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
+import com.server.fitnessapp.models.scheduled.Location;
 
 @Repository
 public class WorkoutsRepository {
     
     private final String COLLECTION_WORKOUTS = "workouts";
     private final String COLLECTION_SCHEDULED_WORKOUTS = "scheduledWorkouts";
+    private final String COLLECTION_SAVED_LOCATIONS = "savedLocations";
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -30,8 +33,25 @@ public class WorkoutsRepository {
         return mongoTemplate.insert(workoutDoc, COLLECTION_SCHEDULED_WORKOUTS);
     }
 
-    public void getScheduledWorkout(String email) {
-        System.out.println("retrieving document");
+    // TODO: 
+    public void getAllScheduledWorkoutsByEmail(String email) {
+        System.out.println("retrieving documents");
+    }
+
+    // Add saved location to Mongo
+    public SavedLocation addLocation(SavedLocation location) {
+        // check if location existing
+        return mongoTemplate.insert(location, COLLECTION_SAVED_LOCATIONS);
+    }
+
+    public void getLocationByName(String name) {
+
+    }
+    // FIXME: Doing get all locations by Email
+    public SavedLocation[] getAllSavedLocationsByEmail(String email) {
+        // List<SavedLocation> allWorkouts = mongoTemplate
+        // .find(StandardWorkout.class, COLLECTION_WORKOUTS);
+        return null;
     }
 
 }

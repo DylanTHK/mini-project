@@ -1,9 +1,12 @@
 package com.server.fitnessapp.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
+import com.server.fitnessapp.models.scheduled.Location;
 import com.server.fitnessapp.services.WorkoutsService;
 
 import jakarta.json.Json;
@@ -50,8 +53,6 @@ public class WorkoutController {
 
     @PostMapping(path="/add-workout")
     public ResponseEntity<String> addScheduledWorkout(@RequestBody String body) {
-        // JsonReader reader = Json.createReader(new StringReader(body));
-        // JsonObject workout = reader.readObject();
 
         Document workoutDoc = Document.parse(body);
         Boolean resp = workoutsSvc.addScheduledWorkout(workoutDoc);
@@ -64,6 +65,37 @@ public class WorkoutController {
         .contentType(MediaType.APPLICATION_JSON)
         .body(resp.toString());
     }
+
+    @PostMapping(path="/add-location")
+    public ResponseEntity<String> addLocation(
+        @RequestBody String location, @RequestParam String email) {
+            
+            JsonReader reader = Json.createReader(new StringReader(location));
+            JsonObject locationJson = reader.readObject();
+            System.out.println(locationJson);
+            SavedLocation loc = SavedLocation.create(locationJson, email);
+
+            SavedLocation respLoc = workoutsSvc.addLocation(loc);
+            String resp = "true";
+            if (null != respLoc) {
+                resp = "true";
+            } else {
+                resp = "false";
+            }
+
+            return ResponseEntity
+            .status(HttpStatus.OK)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(resp);
+    }
+
+    @GetMapping(path="/all-locations")
+    public ResponseEntity<String> getAllLocations(@RequestParam String email) {
+        workoutsSvc.
+        
+        return null;
+    }
+    
     
 
 }

@@ -1,4 +1,4 @@
-package com.server.fitnessapp.models.scheduledWorkout;
+package com.server.fitnessapp.models.scheduled;
 
 public class SelectedWorkout {
     String name;
@@ -28,8 +28,4 @@ public class SelectedWorkout {
     public String toString() {
         return "selectedWorkout [name=" + name + ", selected=" + selected + ", quantity=" + quantity + "]";
     }
-
-    
-    
-
 }

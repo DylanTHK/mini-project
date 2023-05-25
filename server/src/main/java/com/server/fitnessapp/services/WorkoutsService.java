@@ -6,6 +6,7 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
 import com.server.fitnessapp.repositories.WorkoutsRepository;
 
@@ -26,4 +27,11 @@ public class WorkoutsService {
         return false;
     }
 
+    public SavedLocation addLocation(SavedLocation location) {
+        return workoutsRepo.addLocation(location);
+    }
+
+    public SavedLocation[] getAllLocations(String email) {
+        return workoutsRepo.getAllSavedLocationsByEmail(email);
+    }
 }

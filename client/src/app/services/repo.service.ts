@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Marker, ScheduledData, Workout } from '../models/model';
+import { Marker, ScheduledData, UserInfo, Workout } from '../models/model';
 import { Observable, Subject, map } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,7 @@ export class RepoService {
 
   private standardWorkoutUrl = "/api/workouts/standard";
   private addScheduledWorkoutUrl = "/api/workouts/add-workout";
+  private addSavedLocationUrl = "/api/workouts/add-location";
 
 
   workoutSub = new Subject<Workout[]>();
@@ -17,7 +18,7 @@ export class RepoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // TODO: (DOING) add saved location (post)
+  // add schedule workout to Mongo (linked with email)
   addScheduledWorkout(data: ScheduledData) {
     console.info("Sending data to SB");
     this.httpClient.post<boolean>(this.addScheduledWorkoutUrl, data).subscribe(
@@ -27,20 +28,32 @@ export class RepoService {
     )
   }
 
-  // TODO: add saved location (post)
+  // TODO: get all scheduled workouts for user (email)
   getScheduledWorkoutByEmail(email: string) {
-    // this.httpClient.post()
+    // this.httpClient.get()
 
   }
 
-  // TODO: add saved location (post)
-  addSavedLocationByEmail(location: Marker) {
-  }
+  // FIXME: add saved location (post)
+  addSavedLocationByEmail(location: Marker, email: string) {
+    // add email to params
+    const params = new HttpParams()
+      .set("email", email); 
 
+    this.httpClient.post(this.addSavedLocationUrl, location, {params}).subscribe(
+      response => {
+        console.info(response);
+      }
+    )
+    // make post request with url, params and body
+    
+
+  }
   getSavedLocationByEmail(email: string) {
 
   }
 
+  // get array of standard workouts from Mongo
   getStandardWorkout() {
     this.httpClient.get<Workout[]>(this.standardWorkoutUrl)
       .subscribe(data => {

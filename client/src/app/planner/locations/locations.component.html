@@ -24,8 +24,16 @@
                 <p class="mb-1">Distance: {{ distances[idx] }}m</p>
               </div>
               <div class="ms-auto">
-                  <button class="btn btn-primary me-2" (click)="saveLocation(idx)">Save</button>
-                  <button class="btn btn-success" (click)="selectWorkout(idx)">Select Location</button>
+                    <button 
+                    class="btn btn-primary me-2" 
+                    (click)="saveLocation(idx)">
+                        Save
+                    </button>
+                    <button 
+                    class="btn btn-success" 
+                    (click)="selectWorkout(idx)">
+                        Select Location
+                    </button>
               </div>
             </div>
         </div>

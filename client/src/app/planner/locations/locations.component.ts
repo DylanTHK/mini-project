@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Marker } from 'src/app/models/model';
+import { Marker, UserInfo } from 'src/app/models/model';
 import { GoogleMapsService } from 'src/app/services/google-maps.service';
 import { PlannerService } from 'src/app/services/planner.service';
 import { RepoService } from 'src/app/services/repo.service';
@@ -43,9 +43,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
       this.locationSub$.unsubscribe();
   }
 
-
   selectWorkout(index: number) {
-    
     // one route w/o location
     if (index < 0) {
       sessionStorage.setItem("locationSelected", "false");
@@ -60,8 +58,12 @@ export class LocationsComponent implements OnInit, OnDestroy {
     
   }
 
+  // save location to Mongo
   saveLocation(index: number) {
     console.info("saving" + this.markers[index]);
+    const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || "{}");
+    const email = user.info.email;
+    this.repoSvc.addSavedLocationByEmail(this.markers[index], email);
   }
 
   increaseProgressBar(value: number) {

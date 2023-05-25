@@ -1,4 +1,4 @@
-package com.server.fitnessapp.models.scheduledWorkout;
+package com.server.fitnessapp.models.scheduled;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
