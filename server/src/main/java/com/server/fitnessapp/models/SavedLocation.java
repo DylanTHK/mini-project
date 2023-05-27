@@ -1,6 +1,8 @@
 package com.server.fitnessapp.models;
 
+import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class SavedLocation {
     String email;
@@ -35,10 +37,23 @@ public class SavedLocation {
         p.setLat(locationJson.getJsonObject("position").getJsonNumber("lat").doubleValue());
         p.setLng(locationJson.getJsonObject("position").getJsonNumber("lng").doubleValue());
         SavedLocation l = new SavedLocation();
-        l.setName(locationJson.get("name").toString());
+        l.setName(locationJson.getString("name"));
         l.setPosition(p);
         l.setEmail(email);
         return l;
+    }
+
+    public JsonObject toJson() {
+        JsonObjectBuilder p = Json.createObjectBuilder()
+            .add("lat", position.getLat())
+            .add("lng", position.getLng());
+
+        JsonObject obj = Json.createObjectBuilder()
+            .add("email", email)
+            .add("name", name)
+            .add("position", p)
+            .build();
+        return obj;
     }
 
     

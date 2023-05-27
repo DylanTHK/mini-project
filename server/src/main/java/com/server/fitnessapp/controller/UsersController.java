@@ -75,8 +75,6 @@ public class UsersController {
         Optional<UserResponse> opt = userSvc.loginUser(email, password);
 
         JsonObjectBuilder respBuilder = Json.createObjectBuilder();
-        // System.out.println(opt.isPresent());
-        // System.out.println(opt.isEmpty());
         if (opt.isPresent()) {
             UserResponse u = opt.get();
             u.toJson();

@@ -1,6 +1,12 @@
 package com.server.fitnessapp.models.scheduled;
 
+import java.io.StringReader;
+
+import org.bson.Document;
+
+import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class Location {
     String name;
@@ -26,12 +32,33 @@ public class Location {
 
     public static Location create(JsonObject locationJson) {
         Position p = new Position();
+
         p.setLat(locationJson.getJsonObject("position").getJsonNumber("lat").doubleValue());
         p.setLng(locationJson.getJsonObject("position").getJsonNumber("lng").doubleValue());
         Location l = new Location();
-        l.setName(locationJson.get("name").toString());
+        l.setName(locationJson.getString("name"));
+        System.out.println(locationJson.getString("name"));
         l.setPosition(p);
         return l;
+    }
+
+    public static Location create(Document doc) {
+        System.out.println("\n\n Doc: " + doc); // Testing
+        String jsonString = doc.toJson();
+        System.out.println("jsonString: " + jsonString); // Testing
+        JsonObject obj = Json.createReader(new StringReader(jsonString)).readObject();
+        return Location.create(obj);
+    }
+
+    public JsonObject toJson() {
+        JsonObjectBuilder positionBuilder = Json.createObjectBuilder()
+            .add("lat", position.getLat())
+            .add("lng", position.getLng());
+
+        return Json.createObjectBuilder()
+            .add("name", name)
+            .add("position", positionBuilder)
+            .build();
     }
     
     

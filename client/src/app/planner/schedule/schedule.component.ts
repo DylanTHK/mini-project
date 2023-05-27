@@ -39,11 +39,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       console.info(this.workouts);
       this.sets = Number(sessionStorage.getItem("currentSets")) ? Number(sessionStorage.getItem("currentSets")) : 0;
 
-
       // initialise form
       this.dateTimeForm = this.fb.group({
-        date: this.fb.control("2023-11-01"),
-        time: this.fb.control("10:00")
+        date: this.fb.control(new Date().toISOString().split('T')[0]),
+        time: this.fb.control("19:00")
       })
       
   }

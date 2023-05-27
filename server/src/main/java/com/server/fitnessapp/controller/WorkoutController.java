@@ -10,11 +10,13 @@ import com.server.fitnessapp.models.scheduled.Location;
 import com.server.fitnessapp.services.WorkoutsService;
 
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -72,10 +74,14 @@ public class WorkoutController {
             
             JsonReader reader = Json.createReader(new StringReader(location));
             JsonObject locationJson = reader.readObject();
-            System.out.println(locationJson);
-            SavedLocation loc = SavedLocation.create(locationJson, email);
+            System.out.println("\n\nlocation JsonObj: " + locationJson);
 
-            SavedLocation respLoc = workoutsSvc.addLocation(loc);
+            SavedLocation loc = SavedLocation.create(locationJson, email);
+            System.out.println("saved location POJO: " + locationJson);
+
+            Document doc = Document.parse(loc.toJson().toString());
+            System.out.println("Location Document: " + doc);
+            Document respLoc = workoutsSvc.addLocation(doc);
             String resp = "true";
             if (null != respLoc) {
                 resp = "true";
@@ -86,14 +92,28 @@ public class WorkoutController {
             return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(resp);
+            .body("resp");
     }
 
     @GetMapping(path="/all-locations")
     public ResponseEntity<String> getAllLocations(@RequestParam String email) {
-        workoutsSvc.
+        List<Document> locationsDoc = workoutsSvc.getAllLocations(email);
+        System.out.println("\n\nlocationDocs: " + locationsDoc + "\n");
+
+        // List<Location> locationList = new ArrayList<>();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+
+        locationsDoc.stream().forEach(doc -> {
+            // Location l = new Location();
+            Location l = Location.create(doc);
+            arrayBuilder.add(l.toJson());
+        });
         
-        return null;
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .contentType(MediaType.APPLICATION_JSON)
+            // .body(arrayBuilder.build().toString());
+            .body(arrayBuilder.build().toString());
     }
     
     

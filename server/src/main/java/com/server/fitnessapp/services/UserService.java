@@ -30,13 +30,10 @@ public class UserService {
 
     // check if input password matches password in db
     public Optional<UserResponse> loginUser(String email, String password) {
-        System.out.println(email + password);
         // find user with email
         String passwordDb = userRepo.getPassword(email);
         // check password
         boolean passwordMatch = userRepo.validatePassword(passwordDb, password);
-        System.out.println("Password Match: " + passwordMatch);
-
         // return user if validate = true
         if (passwordMatch) {
             return Optional.of(userRepo.getUser(email));

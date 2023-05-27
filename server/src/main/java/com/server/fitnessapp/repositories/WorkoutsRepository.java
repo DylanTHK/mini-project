@@ -5,6 +5,8 @@ import java.util.List;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.server.fitnessapp.models.SavedLocation;
@@ -38,20 +40,23 @@ public class WorkoutsRepository {
         System.out.println("retrieving documents");
     }
 
-    // Add saved location to Mongo
-    public SavedLocation addLocation(SavedLocation location) {
-        // check if location existing
+    // FIXME: Add saved location to Mongo
+    public Document addLocation(Document location) {
+        // convert POJO to Document
+    
         return mongoTemplate.insert(location, COLLECTION_SAVED_LOCATIONS);
     }
 
     public void getLocationByName(String name) {
 
     }
-    // FIXME: Doing get all locations by Email
-    public SavedLocation[] getAllSavedLocationsByEmail(String email) {
-        // List<SavedLocation> allWorkouts = mongoTemplate
-        // .find(StandardWorkout.class, COLLECTION_WORKOUTS);
-        return null;
+    // Doing get all locations by Email
+    public List<Document> getAllSavedLocationsByEmail(String email) {
+        System.out.println("query database");
+        Criteria c = Criteria.where("email").is(email);
+        Query query = new Query(c);
+        List<Document> resp = mongoTemplate.find(query, Document.class, COLLECTION_SAVED_LOCATIONS);
+        System.out.println(resp);
+        return resp;
     }
-
 }

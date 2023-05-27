@@ -27,11 +27,11 @@ public class WorkoutsService {
         return false;
     }
 
-    public SavedLocation addLocation(SavedLocation location) {
+    public Document addLocation(Document location) {
         return workoutsRepo.addLocation(location);
     }
 
-    public SavedLocation[] getAllLocations(String email) {
+    public List<Document> getAllLocations(String email) {
         return workoutsRepo.getAllSavedLocationsByEmail(email);
     }
 }
