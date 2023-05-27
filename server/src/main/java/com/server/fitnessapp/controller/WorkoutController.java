@@ -58,9 +58,6 @@ public class WorkoutController {
 
         Document workoutDoc = Document.parse(body);
         Boolean resp = workoutsSvc.addScheduledWorkout(workoutDoc);
-        // String respString = Json.createObjectBuilder()
-        //     .add("added", resp)
-        //     .build().toString();
 
         return ResponseEntity
         .status(HttpStatus.OK)
@@ -71,44 +68,37 @@ public class WorkoutController {
     @PostMapping(path="/add-location")
     public ResponseEntity<String> addLocation(
         @RequestBody String location, @RequestParam String email) {
-            
+            // Json String -> POJO (combine email and location)
             JsonReader reader = Json.createReader(new StringReader(location));
             JsonObject locationJson = reader.readObject();
-            System.out.println("\n\nlocation JsonObj: " + locationJson);
-
             SavedLocation loc = SavedLocation.create(locationJson, email);
-            System.out.println("saved location POJO: " + locationJson);
-
-            Document doc = Document.parse(loc.toJson().toString());
-            System.out.println("Location Document: " + doc);
-            Document respLoc = workoutsSvc.addLocation(doc);
+            // Add SavedLocation to Mongo
+            SavedLocation respLoc = workoutsSvc.addLocation(loc);
             String resp = "true";
             if (null != respLoc) {
                 resp = "true";
             } else {
                 resp = "false";
             }
-
+            // Returning result of insert
             return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)
-            .body("resp");
+            .body(resp);
     }
 
     @GetMapping(path="/all-locations")
     public ResponseEntity<String> getAllLocations(@RequestParam String email) {
+        // Retrieve locations from Mongo
         List<Document> locationsDoc = workoutsSvc.getAllLocations(email);
-        System.out.println("\n\nlocationDocs: " + locationsDoc + "\n");
-
-        // List<Location> locationList = new ArrayList<>();
+        // Building JsonString
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-
         locationsDoc.stream().forEach(doc -> {
             // Location l = new Location();
             Location l = Location.create(doc);
             arrayBuilder.add(l.toJson());
         });
-        
+        // Sending JsonString
         return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)

@@ -27,8 +27,22 @@ public class WorkoutsService {
         return false;
     }
 
-    public Document addLocation(Document location) {
-        return workoutsRepo.addLocation(location);
+    public SavedLocation addLocation(SavedLocation location) {
+        String email = location.getEmail();
+        String name = location.getName();
+        // get all saved locations
+        List<Document> locationsDoc = workoutsRepo.getAllSavedLocationsByEmail(email);
+
+        // Checking for existing entry
+        boolean existing = locationsDoc.stream()
+            .anyMatch( d -> d.getString("name").equals(name));
+        if (existing) {
+            System.out.println("Existing entry found");
+            return null;
+        } else {
+            System.out.println("Adding location");
+            return workoutsRepo.addLocation(location);
+        }
     }
 
     public List<Document> getAllLocations(String email) {

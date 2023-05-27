@@ -40,10 +40,8 @@ public class WorkoutsRepository {
         System.out.println("retrieving documents");
     }
 
-    // FIXME: Add saved location to Mongo
-    public Document addLocation(Document location) {
-        // convert POJO to Document
-    
+    // Add saved location to Mongo
+    public SavedLocation addLocation(SavedLocation location) {    
         return mongoTemplate.insert(location, COLLECTION_SAVED_LOCATIONS);
     }
 
