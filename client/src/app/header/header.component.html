@@ -24,13 +24,25 @@
                     </button>
                 </li>
 
-                <li class="nav-item">
-                    <button class="nav-link btn btn-dark" 
+                <li ngbDropdown>
+                    <button class="nav-link dropdown-toggle btn btn-dark" 
+                    ngbDropdownToggle
+                    id="navbarDropdown" 
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                     [routerLinkActive]="['active']" 
-                    [routerLink]="['/planner']"
                     [disabled]="!isLoggedIn">
                         Planner
                     </button>
+                    <ul ngbDropdownMenu 
+                        aria-labelledby="navbarDropdown">
+                        <li ngbDropdownItem>
+                            <a class="dropdown-item" [routerLink]="['/planner']">Select Location</a>
+                        </li>
+                        <li ngbDropdownItem>
+                            <a class="dropdown-item" [routerLink]="['/saved-locations']">Saved Locations</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
@@ -41,7 +53,8 @@
                     </button>
                 </li>
 
-                <li ngbDropdown>
+                <li class="nav-item">
+                <!-- <li ngbDropdown>
                     <button class="nav-link dropdown-toggle btn btn-dark" 
                     ngbDropdownToggle
                     id="navbarDropdown" 
@@ -51,9 +64,15 @@
                     [routerLink]="['/statistics']"
                     [disabled]="!isLoggedIn">
                         Statistics
+                    </button> -->
+                    <button class="nav-link btn btn-dark" 
+                    [routerLinkActive]="['active']"
+                    [routerLink]="['/statistics']"
+                    [disabled]="!isLoggedIn">
+                        Statistics
                     </button>
                     <!-- TODO: fix to match number of workouts -->
-                    <ul ngbDropdownMenu 
+                    <!-- <ul ngbDropdownMenu 
                         aria-labelledby="navbarDropdown">
                         <li ngbDropdownItem>
                             <a class="dropdown-item" [routerLink]="['/statistics', 'week']">Week</a>
@@ -61,7 +80,7 @@
                         <li ngbDropdownItem>
                             <a class="dropdown-item" [routerLink]="['/statistics', 'month']">Month</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
 
                 <!-- <li>

@@ -52,7 +52,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   // Sends scheduled data to SB
-  submitWorkoutData() {
+  async submitWorkoutData() {
     this.increaseProgressBar();
     const locJson = sessionStorage.getItem("location");
     const userJson = sessionStorage.getItem("user");
@@ -71,9 +71,16 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     console.info(data);
     // console.info("scheduling workout")
     
-    this.repoSvc.addScheduledWorkout(data);
-    this.resetSession();
-    this.router.navigate(['/planner', 'confirm'])
+    this.repoSvc.addScheduledWorkout(data)
+      .then( response => {
+        if (response) {
+          // TODO: ADD send email confirmation to user
+          this.sendConfirmationEmail(data);
+          this.resetSession();
+          this.router.navigate(['/planner', 'confirm'])
+          this.increaseProgressBar();
+        }
+      });
     
   }
 
@@ -85,5 +92,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem("location")
     sessionStorage.removeItem("currentSets")
     sessionStorage.removeItem("currentWorkouts")
+  }
+
+  // TODO: Send email to 
+  sendConfirmationEmail(data: ScheduledData) {
+    console.info("Sending email to: " + data.email);
   }
 }

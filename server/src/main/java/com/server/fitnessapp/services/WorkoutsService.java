@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
+import com.server.fitnessapp.models.scheduled.ScheduledWorkout;
 import com.server.fitnessapp.repositories.WorkoutsRepository;
 
 @Service
@@ -27,12 +28,15 @@ public class WorkoutsService {
         return false;
     }
 
+    public List<ScheduledWorkout> getAllWorkouts(String email) {
+        return workoutsRepo.getAllScheduledWorkoutsByEmail(email);
+    }
+
     public SavedLocation addLocation(SavedLocation location) {
         String email = location.getEmail();
         String name = location.getName();
         // get all saved locations
         List<Document> locationsDoc = workoutsRepo.getAllSavedLocationsByEmail(email);
-
         // Checking for existing entry
         boolean existing = locationsDoc.stream()
             .anyMatch( d -> d.getString("name").equals(name));

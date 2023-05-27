@@ -13,6 +13,7 @@ import { SettingsComponent } from './users/settings/settings.component';
 import { ScheduleComponent } from './planner/schedule/schedule.component';
 import { SelectWorkoutComponent } from './planner/select-workout/select-workout.component';
 import { ConfirmComponent } from './planner/confirm/confirm.component';
+import { SavedLocationComponent } from './planner/saved-location/saved-location.component';
 
 const routes: Routes = [
   // {path: "", redirectTo: "home", pathMatch: "full"},
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: "signup", component: SignupComponent},
   {path: "user/profile", component: ProfileComponent},
   {path: "user/settings", component: SettingsComponent},
-
+  {path: "saved-locations", component: SavedLocationComponent},
   {path: "**", redirectTo: "home", pathMatch: "full"}
 ];
 

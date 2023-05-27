@@ -11,6 +11,7 @@ export class ConfirmComponent {
   constructor(private plannerSvc: PlannerService) { }
 
   addToCalendar() {
+    alert("Redirecting to Google Calendar");
     this.plannerSvc.resetProgress();
   }
 }

@@ -23,6 +23,7 @@ import { PlannerComponent } from './planner/planner.component';
 import { ScheduleComponent } from './planner/schedule/schedule.component';
 import { SelectWorkoutComponent } from './planner/select-workout/select-workout.component';
 import { ConfirmComponent } from './planner/confirm/confirm.component';
+import { SavedLocationComponent } from './planner/saved-location/saved-location.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConfirmComponent } from './planner/confirm/confirm.component';
     SettingsComponent,
     ScheduleComponent,
     SelectWorkoutComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    SavedLocationComponent
   ],
   imports: [
     BrowserModule,

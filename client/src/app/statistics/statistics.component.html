@@ -1,8 +1,99 @@
-<p>statistics works!</p>
-<div class="row mb-12 bg-light rounded mb-1">
-
-    <button class="btn btn-primary">Week</button>
-    <button class="btn btn-primary">Month</button>
-    <button class="btn btn-primary">Year</button>
-
+<div class="container-xl" style="width: 75vw;">
+    <div class="container-fluid">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>Statistics</h3>
+            </div>
+            <div class="card-body">
+                <div class="card p-3 mb-2 d-flex justify-content-center">
+                    <h4>Workout Count</h4>
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>Week</th>
+                                <th>Month</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <th scope="col">{{ thisWeekSchedule.length }}</th>
+                            <th scope="col">{{ thisMonthSchedule.length }}</th>
+                            <th scope="col">{{ allScheduledWorkouts.length }}</th>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card p-3 mb-3">
+                    <h4>Workouts (This Week)</h4>
+                    <!-- TODO: get workout -->
+                    <div *ngIf="!thisWeekSchedule.length">
+                        <p>No workouts this week</p>
+                        <button 
+                        class="btn btn-success"
+                        [routerLink]="['/planner']">
+                            Planner
+                        </button>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Sets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let w of thisWeekSchedule">
+                                <td scope="col">{{ w.date }} - {{ w.time }}</td>
+                                <td scope="col">{{ w.location.name }}</td>
+                                <td scope="col">{{ w.sets }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="card p-3 mb-3">
+                    <h4>Scheduled workouts</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Sets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let w of nextWeekSchedule">
+                                <td scope="col">{{ w.date }} - {{ w.time }}</td>
+                                <td scope="col">{{ w.location.name }}</td>
+                                <td scope="col">{{ w.sets }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="card p-3 mb-3">
+                    <h4>Past Workouts</h4>
+                    <!-- TODO: copy similar table format -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Sets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let w of pastWeekSchedule">
+                                <td scope="col">{{ w.date }} - {{ w.time }}</td>
+                                <td scope="col">{{ w.location.name }}</td>
+                                <td scope="col">{{ w.sets }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+        </div>
+    </div>
 </div>
+

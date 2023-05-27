@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
 import com.server.fitnessapp.models.scheduled.Location;
+import com.server.fitnessapp.models.scheduled.ScheduledWorkout;
 
 @Repository
 public class WorkoutsRepository {
@@ -23,6 +24,7 @@ public class WorkoutsRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    // Standard Workouts (Pushup, Situp, Jump squat, Pullup)
     public List<StandardWorkout> getStandardWorkouts() {
         List<StandardWorkout> allWorkouts = mongoTemplate
             .findAll(StandardWorkout.class, COLLECTION_WORKOUTS);
@@ -30,14 +32,17 @@ public class WorkoutsRepository {
         return allWorkouts;
     }
 
+    // INSERT scheduled workout (workout details + date + time)
     public Document insertScheduledWorkout(Document workoutDoc) {
         System.out.println("inserting document");
         return mongoTemplate.insert(workoutDoc, COLLECTION_SCHEDULED_WORKOUTS);
     }
-
-    // TODO: 
-    public void getAllScheduledWorkoutsByEmail(String email) {
+    // GET All scheduled workouts
+    public List<ScheduledWorkout> getAllScheduledWorkoutsByEmail(String email) {
         System.out.println("retrieving documents");
+        Criteria c = Criteria.where("email").is(email);
+        Query query = new Query(c);
+        return mongoTemplate.find(query, ScheduledWorkout.class, COLLECTION_SCHEDULED_WORKOUTS);
     }
 
     // Add saved location to Mongo
@@ -45,9 +50,6 @@ public class WorkoutsRepository {
         return mongoTemplate.insert(location, COLLECTION_SAVED_LOCATIONS);
     }
 
-    public void getLocationByName(String name) {
-
-    }
     // Doing get all locations by Email
     public List<Document> getAllSavedLocationsByEmail(String email) {
         System.out.println("query database");

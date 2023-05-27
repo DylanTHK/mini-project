@@ -18,6 +18,14 @@ export class LocationsComponent implements OnInit, OnDestroy {
   locationSub$!: Subscription;
   distanceSub$!: Subscription;
 
+  home: Marker = {
+    name: "Home",
+    position: {
+      lat: 0.00,
+      lng: 0.00
+    }
+  }
+
   constructor(private googleMapsSvc: GoogleMapsService,
     private router: Router,
     private plannerSvc: PlannerService,
@@ -46,7 +54,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
   selectWorkout(index: number) {
     // one route w/o location
     if (index < 0) {
-      sessionStorage.setItem("locationSelected", "false");
+      sessionStorage.setItem("location", JSON.stringify(this.home));
       this.router.navigate(['/planner', 'select']);
     } else {
       // one route w location
@@ -59,11 +67,19 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   // save location to Mongo
-  saveLocation(index: number) {
+  async saveLocation(index: number) {
     console.info("saving" + this.markers[index]);
     const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || "{}");
     const email = user.info.email;
-    this.repoSvc.addSavedLocationByEmail(this.markers[index], email);
+    const result = this.repoSvc.addSavedLocationByEmail(this.markers[index], email);
+    result.then(result => {
+      console.info(result);
+      alert(result);
+      // if (result) {
+      // } else {
+      //   alert("Error in saving please try again");
+      // }
+    })
   }
 
   increaseProgressBar(value: number) {

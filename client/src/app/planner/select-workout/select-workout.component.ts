@@ -74,6 +74,7 @@ export class SelectWorkoutComponent implements OnInit, OnDestroy {
     private repoSvc: RepoService) { }
 
   ngOnInit(): void {
+    this.plannerSvc.updateProgress(33);
     this.workoutForm = this.fb.group({
       workouts: this.fb.array([]),
       sets: this.fb.control(3, Validators.required)

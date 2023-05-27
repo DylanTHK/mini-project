@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.server.fitnessapp.models.SavedLocation;
 import com.server.fitnessapp.models.StandardWorkout;
 import com.server.fitnessapp.models.scheduled.Location;
+import com.server.fitnessapp.models.scheduled.ScheduledWorkout;
 import com.server.fitnessapp.services.WorkoutsService;
 
 import jakarta.json.Json;
-import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -65,6 +64,29 @@ public class WorkoutController {
         .body(resp.toString());
     }
 
+    @GetMapping(path="/all-workouts")
+    public ResponseEntity<String> getAllScheduledWorkouts(@RequestParam String email) {
+        List<ScheduledWorkout> workouts = workoutsSvc.getAllWorkouts(email);
+        System.out.println(workouts);
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        
+        if (workouts.isEmpty()) {
+            return ResponseEntity
+            .status(HttpStatus.OK)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(arrayBuilder.build().toString());
+        }
+
+        workouts.stream().forEach( w -> {
+            arrayBuilder.add(w.toJson());
+        });
+        System.out.println(workouts);
+        return ResponseEntity
+        .status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(arrayBuilder.build().toString());
+    }
+
     @PostMapping(path="/add-location")
     public ResponseEntity<String> addLocation(
         @RequestBody String location, @RequestParam String email) {
@@ -76,9 +98,9 @@ public class WorkoutController {
             SavedLocation respLoc = workoutsSvc.addLocation(loc);
             String resp = "true";
             if (null != respLoc) {
-                resp = "true";
+                resp = "Location saved";
             } else {
-                resp = "false";
+                resp = "Error: Location already saved";
             }
             // Returning result of insert
             return ResponseEntity
