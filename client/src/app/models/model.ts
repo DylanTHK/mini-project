@@ -59,3 +59,11 @@ export interface ScheduledData {
     time: Time;
     email: string;
 }
+
+// EMAIL DATA
+export interface EmailData {
+    subject: string;
+    date: string;
+    time: string;
+    location: string;
+}

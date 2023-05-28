@@ -1,11 +1,15 @@
-<div class="row mb-12 bg-light rounded mb-1" >
-    <p>An Email Confirmation has been sent</p>
-    <button class="btn btn-primary"
-    (click)="addToCalendar()">
-        Add to Google Calendar
-    </button>
-    <button class="btn btn-primary"
-    [routerLink]="['/statistics']">
-        Statistics
-    </button>
+
+<div class="row mb-12 bg-light rounded mb-1">
+    <div class="text-center my-3">
+        <p>An Email Confirmation has been sent</p>
+        <!-- <button class="btn btn-primary me-2" (click)="addToCalendar()">
+            Add to Google Calendar
+        </button> -->
+        <button class="btn btn-primary me-2" (click)=sendEmail()>
+            Email
+        </button>
+        <button class="btn btn-primary" [routerLink]="['/statistics']">
+            Statistics
+        </button>
+    </div>
 </div>

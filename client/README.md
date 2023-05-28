@@ -5,6 +5,11 @@
 ng serve --proxy-config src/proxy.config.js
 ```
 
+## Maven (clean + run)
+```
+mvn clean spring-boot:run
+```
+
 ## BootStrap
 ```
 1. ng add @ng-bootstrap/ng-bootstrap
@@ -39,6 +44,8 @@ https://www.freecodecamp.org/news/how-to-change-javascript-google-map-marker-col
 https://developers.google.com/maps/documentation/javascript/reference/marker#Icon
 ```
 
+
+
 ## Calisthenic Workouts
 ```
 https://www.healthline.com/health/fitness-exercise/calisthenics
@@ -49,18 +56,16 @@ git branch <branch name>
 git checkout <branch name>
 ```
 
-## Stripe payment
-https://www.itsolutionstuff.com/post/angular-15-stripe-payment-integration-exampleexample.html
+### Springboot Email
+https://www.baeldung.com/spring-email
 
-## OAuth2 Google
-https://www.itsolutionstuff.com/post/angular-15-google-social-login-tutorial-exampleexample.html
+
 
 ## TODO:
 ## Mandatory
 ```
 12. Model data relationship (User and Token)
 13. Demonstrate data integrity and consistency (transactions)
-
 15. Deploy on railway (angular + springboot)
 16. Deploy database on cloud (MySQL, Mongo)
 ```
