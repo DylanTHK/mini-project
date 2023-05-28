@@ -30,7 +30,6 @@ public class GoogleMapsController {
         @RequestParam(defaultValue="1.332326 103.936659") String location,
         @RequestParam(defaultValue="500") String radius) {
         
-        System.out.println("making API call");
         // making API call (fitness corners)
         List<GoogleLocation> list = locationSvc.searchNearbyLocation(location, radius);
 

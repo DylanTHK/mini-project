@@ -22,11 +22,9 @@ export class ConfirmComponent {
     const data: ScheduledData = JSON.parse(sessionStorage.getItem("scheduledData") || "{}");
     this.emailSvc.sendConfirmationEmail(data)
       .then(data => {
-        console.info(data);
         alert(data);
       })
       .catch(error => {
-        console.info(error.error);
         alert(error.error);
       });
     

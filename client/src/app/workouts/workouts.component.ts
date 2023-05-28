@@ -19,7 +19,6 @@ export class WorkoutsComponent implements OnInit, OnDestroy {
       this.workoutSub$ = this.repoSvc.workoutSub.subscribe(
         (data: Workout[]) => {
           this.standardWorkouts = data;
-          console.info(this.standardWorkouts);
         }
       )
       if (this.standardWorkouts.length <= 0) {

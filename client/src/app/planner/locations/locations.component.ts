@@ -68,22 +68,15 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
   // save location to Mongo
   async saveLocation(index: number) {
-    console.info("saving" + this.markers[index]);
     const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || "{}");
     const email = user.info.email;
     const result = this.repoSvc.addSavedLocationByEmail(this.markers[index], email);
     result.then(result => {
-      console.info(result);
       alert(result);
-      // if (result) {
-      // } else {
-      //   alert("Error in saving please try again");
-      // }
     })
   }
 
   increaseProgressBar(value: number) {
-    console.info("increasing")
     this.plannerSvc.updateProgress(value);
   }
   

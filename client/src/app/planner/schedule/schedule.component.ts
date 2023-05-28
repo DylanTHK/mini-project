@@ -27,16 +27,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     private repoSvc: RepoService) { }
 
   ngOnInit(): void {
-      // const location = JSON.parse(sessionStorage.getItem("location") || '{}') as Marker;
       const locationJson = sessionStorage.getItem("location");
       const workoutJson = sessionStorage.getItem("currentWorkouts");
-
       const location: Marker = locationJson ? JSON.parse(locationJson) : {};
-      // console.info(location);
       this.markers.push(location);
 
       this.workouts = workoutJson ? JSON.parse(workoutJson) : [];
-      console.info(this.workouts);
       this.sets = Number(sessionStorage.getItem("currentSets")) ? Number(sessionStorage.getItem("currentSets")) : 0;
 
       // initialise form
@@ -71,8 +67,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.repoSvc.addScheduledWorkout(data)
       .then( response => {
         if (response) {
-          console.info(response);
-          // this.resetSession();
           sessionStorage.setItem("scheduledData", JSON.stringify(data));
           this.router.navigate(['/planner', 'confirm'])
           this.increaseProgressBar();

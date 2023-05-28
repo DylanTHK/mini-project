@@ -27,7 +27,6 @@ export class GoogleMapsService {
 
     firstValueFrom(this.httpClient.get<Marker[]>(this.url, {params}))
       .then((data: Marker[]) => {
-        // console.info(data);
         this.locationSubject.next(data);
 
         const reference: google.maps.LatLngLiteral = { lat: lat, lng: lng };
@@ -47,7 +46,6 @@ export class GoogleMapsService {
     const calculatedDistance = 
       google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
 
-    // console.info(calculatedDistance);
     return calculatedDistance;
   }
 }

@@ -23,16 +23,14 @@ export class RepoService {
 
   // add schedule workout to Mongo (linked with email)
   addScheduledWorkout(data: ScheduledData) {
-    console.info("Sending data to SB");
     return firstValueFrom(this.httpClient.post<boolean>(this.addScheduledWorkoutUrl, data));
   }
 
-  // TODO: get all scheduled workouts for user (email) - Link to Statistics
+  // get all scheduled workouts for user (email) - Link to Statistics
   getAllScheduledWorkoutsByEmail(email: string) {
     const params = new HttpParams().set("email", email); 
     this.httpClient.get<ScheduledData[]>(this.getAllScheduledWorkoutsUrl, {params})
       .subscribe(data => {
-        console.info(data)
         this.allScheduledWorkoutsSub.next(data);
       });
   }
@@ -59,7 +57,6 @@ export class RepoService {
   getStandardWorkout() {
     this.httpClient.get<Workout[]>(this.standardWorkoutUrl)
       .subscribe(data => {
-        console.info(data);
         this.workoutSub.next(data);
       })
   }

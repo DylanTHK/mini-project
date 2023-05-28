@@ -59,7 +59,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
     this.locationSub$ = this.googleMapsSvc.locationSubject.subscribe(
       (data: Marker[]) => {
         this.markers = data;
-        console.info("markers: ", this.markers);
       }
     )
     this.progressSub$ = this.plannerSvc.progressSub.subscribe(
@@ -95,7 +94,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
       
       // find nearby locations
       const pos = event.latLng.toJSON()
-      console.info(pos);
       this.googleMapsSvc.getNearbyLocations(pos.lat, pos.lng);
       this.router.navigate(['/planner']);
     }
@@ -103,7 +101,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
   }
 
   openInfo(marker: MapMarker, infoWindow: MapInfoWindow) {
-    console.info(marker);
     infoWindow.open(marker);
   }
 
@@ -117,7 +114,6 @@ export class PlannerComponent implements OnInit, OnDestroy  {
       point1,
       point2
     );
-    console.info(calculatedDistance);
   }
 
 }

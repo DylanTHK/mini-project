@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
       this.loginForm = this.fb.group(
         {
-          // FIXME: add email validation for submission
           email: this.fb.control("", [Validators.required]), //, Validators.email
           password: this.fb.control("", [Validators.required]),
           rememberMe: [false]
@@ -43,9 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // console.info("submitting form");
     if (!this.loginForm.invalid) {
-      // console.info(this.loginForm.value as LoginDetails);
       this.userSvc.loginUser(this.loginForm.value as LoginDetails);
     }
     // if valid, continue with SB login Process

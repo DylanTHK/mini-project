@@ -30,7 +30,6 @@ export class SettingsComponent implements OnInit, OnDestroy{
   }
 
   deleteUser() {
-    console.info("deleting user");
     this.userSvc.deleteUser(this.user.info.email);
   }
 

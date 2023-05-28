@@ -29,11 +29,9 @@ export class SavedLocationComponent {
     private plannerSvc: PlannerService) { };
 
   ngOnInit(): void {
-    console.info("saved-location initialised")
     this.savedLocationSub$ = this.repoSvc.savedLocationsSub
       .subscribe((data: Marker[]) => {
         this.savedLocations = data;
-        console.info(this.savedLocations);
       });
     if (this.savedLocations.length <= 0) {
       const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || "{}");
@@ -63,14 +61,12 @@ export class SavedLocationComponent {
 
   // save location to Mongo
   saveLocation(index: number) {
-    console.info("saving" + this.savedLocations[index]);
     const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || "{}");
     const email = user.info.email;
     this.repoSvc.addSavedLocationByEmail(this.savedLocations[index], email);
   }
 
   increaseProgressBar() {
-    console.info("increasing");
     this.plannerSvc.updateProgress(33);
   }
 

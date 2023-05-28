@@ -52,14 +52,6 @@ public class UserRepository {
 
     // validate password of user
     public boolean validatePassword(String dbPassword, String inputPassword) {
-        System.out.println("input password: " + inputPassword);
-        System.out.println("DB password: " + dbPassword);
-        if (dbPassword.equals(inputPassword)) {
-            System.out.println("Password Matches!");
-        } else {
-            System.out.println("Password Dont Match!");
-        }
-
         return dbPassword.equals(inputPassword);
     }
 

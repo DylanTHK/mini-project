@@ -22,7 +22,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const user: UserInfo = JSON.parse(sessionStorage.getItem("user") || '{}');
     const email = user.info.email;
-    console.info(email);
     this.schduledWorkoutSub$ = this.repoSvc.allScheduledWorkoutsSub
       .subscribe( workouts => {
         this.allScheduledWorkouts = workouts;

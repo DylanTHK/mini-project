@@ -27,9 +27,7 @@ export class SignupComponent implements OnInit, OnDestroy{
 
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
-      // FIXME: add email validator
-      email: ['', [Validators.required]], //, Validators.email
-      // TODO: add password requirements (regex)
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       agreeTerms: [false, Validators.requiredTrue]
@@ -45,8 +43,7 @@ export class SignupComponent implements OnInit, OnDestroy{
       // Perform form submission actions
       const p = this.signupForm.get('password')?.value;
       const cp = this.signupForm.get('confirmPassword')?.value;
-      console.info(this.signupForm.value);
-      console.info(this.signupForm.value["name"]);
+
       if (p === cp) {
         const details: AddUserDetails = {
           name: this.signupForm.value["name"],

@@ -37,15 +37,12 @@ public class Location {
         p.setLng(locationJson.getJsonObject("position").getJsonNumber("lng").doubleValue());
         Location l = new Location();
         l.setName(locationJson.getString("name"));
-        System.out.println(locationJson.getString("name"));
         l.setPosition(p);
         return l;
     }
 
     public static Location create(Document doc) {
-        System.out.println("\n\n Doc: " + doc); // Testing
         String jsonString = doc.toJson();
-        System.out.println("jsonString: " + jsonString); // Testing
         JsonObject obj = Json.createReader(new StringReader(jsonString)).readObject();
         return Location.create(obj);
     }

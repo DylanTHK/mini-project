@@ -28,18 +28,15 @@ public class WorkoutsRepository {
     public List<StandardWorkout> getStandardWorkouts() {
         List<StandardWorkout> allWorkouts = mongoTemplate
             .findAll(StandardWorkout.class, COLLECTION_WORKOUTS);
-        System.out.println("All workouts: " + allWorkouts);
         return allWorkouts;
     }
 
     // INSERT scheduled workout (workout details + date + time)
     public Document insertScheduledWorkout(Document workoutDoc) {
-        System.out.println("inserting document");
         return mongoTemplate.insert(workoutDoc, COLLECTION_SCHEDULED_WORKOUTS);
     }
     // GET All scheduled workouts
     public List<ScheduledWorkout> getAllScheduledWorkoutsByEmail(String email) {
-        System.out.println("retrieving documents");
         Criteria c = Criteria.where("email").is(email);
         Query query = new Query(c);
         return mongoTemplate.find(query, ScheduledWorkout.class, COLLECTION_SCHEDULED_WORKOUTS);
@@ -52,11 +49,9 @@ public class WorkoutsRepository {
 
     // Doing get all locations by Email
     public List<Document> getAllSavedLocationsByEmail(String email) {
-        System.out.println("query database");
         Criteria c = Criteria.where("email").is(email);
         Query query = new Query(c);
         List<Document> resp = mongoTemplate.find(query, Document.class, COLLECTION_SAVED_LOCATIONS);
-        System.out.println(resp);
         return resp;
     }
 }

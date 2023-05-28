@@ -41,8 +41,6 @@ public class UsersController {
         User user = User.toUser(obj);
         
         boolean result = userSvc.registerUser(user);
-        System.out.println(result);
-
         JsonObjectBuilder respBuilder = Json.createObjectBuilder();
         
         if (result) {
@@ -105,7 +103,6 @@ public class UsersController {
     // Delete user request from Angular - 17/5
     @PutMapping("/delete-user/{email}")
     public ResponseEntity<String> deleteUser(@PathVariable String email) {
-        System.out.println("email received: " + email);
         boolean result = userSvc.removeUser(email);
 
         JsonObjectBuilder respBuilder = Json.createObjectBuilder();

@@ -41,15 +41,11 @@ export class UserService {
 
   // Add User to database with form data
   addUser(user: AddUserDetails) {
-    // console.info("adding user" + JSON.stringify(user));
     // connect to Spring Boot
     this.httpClient.post<CreatedResponse>(this.url_add, user)
       .subscribe((data: CreatedResponse) => {
-        console.info(data);
-        console.info("pushing data");
           this.newAlert.next(ALERTS[0]);
       }, (error: CreatedResponse) => {
-        console.info(error);
         this.newAlert.next(ALERTS[2]);
       });
   }
@@ -62,12 +58,10 @@ export class UserService {
 
     this.httpClient.get<UserInfo>(this.url_login, {params})
       .subscribe((data: UserInfo) => {
-        console.info(data)
         sessionStorage.setItem("user", JSON.stringify(data));
         this.loginStatus.next(data.loginStatus);
         this.router.navigate(['/home']);
       }, error => {
-        console.info(error);
         this.loginStatus.next(error.loginStatus);
       });
   }
@@ -77,12 +71,11 @@ export class UserService {
     this.httpClient.put(url, null)
       .subscribe(
       data => {
-        console.info(data);
         sessionStorage.clear();
         this.loginStatus.next(false);
         this.router.navigate(['/home']);
       }, error => {
-        console.info(error)
+        alert(error);
       }
     )
   }

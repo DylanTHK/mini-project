@@ -67,7 +67,6 @@ public class WorkoutController {
     @GetMapping(path="/all-workouts")
     public ResponseEntity<String> getAllScheduledWorkouts(@RequestParam String email) {
         List<ScheduledWorkout> workouts = workoutsSvc.getAllWorkouts(email);
-        System.out.println(workouts);
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         
         if (workouts.isEmpty()) {
@@ -80,7 +79,6 @@ public class WorkoutController {
         workouts.stream().forEach( w -> {
             arrayBuilder.add(w.toJson());
         });
-        System.out.println(workouts);
         return ResponseEntity
         .status(HttpStatus.OK)
         .contentType(MediaType.APPLICATION_JSON)

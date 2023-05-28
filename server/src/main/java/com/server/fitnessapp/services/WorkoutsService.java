@@ -41,10 +41,8 @@ public class WorkoutsService {
         boolean existing = locationsDoc.stream()
             .anyMatch( d -> d.getString("name").equals(name));
         if (existing) {
-            System.out.println("Existing entry found");
             return null;
         } else {
-            System.out.println("Adding location");
             return workoutsRepo.addLocation(location);
         }
     }

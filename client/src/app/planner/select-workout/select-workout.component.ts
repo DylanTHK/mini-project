@@ -119,7 +119,6 @@ export class SelectWorkoutComponent implements OnInit, OnDestroy {
   }
 
   increaseProgressBar() {
-    console.info("increasing")
     this.plannerSvc.updateProgress(66);
   }
 

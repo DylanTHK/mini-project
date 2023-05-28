@@ -29,11 +29,9 @@ public class EmailService {
         message.setSubject(emailData.getSubject());
         message.setText(insertValues(messageTemplate, emailData));
         try {
-            System.out.println("Sending email");
             emailSender.send(message);
             return true;
         } catch (MailException e) {
-            System.out.println("Error occured");
             e.printStackTrace();
             return false;
         }
@@ -41,10 +39,9 @@ public class EmailService {
 
     public String insertValues(String template, ConfirmationEmail emailData) {
         String newTemplate = template;
-        newTemplate.replace("<Date>", emailData.getDate());
+        newTemplate = newTemplate.replace("<Date>", emailData.getDate());
         newTemplate = newTemplate.replace("<Time>", emailData.getTime());
         newTemplate = newTemplate.replace("<Location>", emailData.getLocation());
-        System.out.println(messageTemplate);
 
         return newTemplate;
     }
