@@ -14,11 +14,13 @@ import { ScheduleComponent } from './planner/schedule/schedule.component';
 import { SelectWorkoutComponent } from './planner/select-workout/select-workout.component';
 import { ConfirmComponent } from './planner/confirm/confirm.component';
 import { SavedLocationComponent } from './planner/saved-location/saved-location.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   // {path: "", redirectTo: "home", pathMatch: "full"},
   {path: "", component: HomeComponent},
   {path: "home", component: HomeComponent},
+  {path: "about", component: AboutComponent},
   {path: "planner", component: PlannerComponent,
     children: [
       {path: "", component: LocationsComponent},

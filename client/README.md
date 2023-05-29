@@ -66,8 +66,6 @@ https://www.baeldung.com/spring-email
 ```
 12. Model data relationship (User and Token)
 13. Demonstrate data integrity and consistency (transactions)
-15. Deploy on railway (angular + springboot)
-16. Deploy database on cloud (MySQL, Mongo)
 ```
 ## Optional
 ```
@@ -76,10 +74,7 @@ https://www.baeldung.com/spring-email
 - Access Google Resourses
 2. Integrate Google Calender - 6 
 - schedule workouts
-3. Send email - 5 (Priority!)
-- email reminder for schedule
 4. SpringBoot security with JWT - 5
-
 7. Apply domain name - 3
 ```
 
@@ -100,15 +95,16 @@ https://www.baeldung.com/spring-email
 12. 
 13. 
 14. Must use another database type (Mongo (convert workout to mongo), sessionStorage) 
-15. 
-16. 
+15. Deploy on railway (angular + springboot)
+16. Deploy database on cloud (MySQL, Mongo)
 ```
-## Optional (4 + 4) = 8
+## Optional (5 + 4 + 4) = 13
 ```
+3. Send email - 5
+- email reminder for schedule
 5. Google Maps - 4
 - Add event listeners for map
 - detect click / location
 - search for fitness corners, display on map
-
 6. UI Component (ng-bootstrap) - 4
 ```

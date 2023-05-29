@@ -23,7 +23,14 @@
                         Home
                     </button>
                 </li>
-
+                <li class="nav-item">
+                    <button class="nav-link btn btn-dark" 
+                    aria-current="page" 
+                    [routerLinkActive]="['active']" 
+                    [routerLink]="['/about']">
+                        About
+                    </button>
+                </li>
                 <li ngbDropdown>
                     <button class="nav-link dropdown-toggle btn btn-dark" 
                     ngbDropdownToggle
@@ -49,7 +56,7 @@
                     <button class="nav-link btn btn-dark" 
                     [routerLinkActive]="['active']" 
                     [routerLink]="['/workouts']">
-                        Workouts
+                        Tutorials
                     </button>
                 </li>
 
