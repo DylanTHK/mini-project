@@ -1,0 +1,46 @@
+
+<section class="py-5 border-bottom bg-light rounded-4" id="features">
+    <div class="container px-5">
+        <div class="container">
+            <h1>About Fitness For Free</h1>
+            <p>
+                Welcome to Fitness For Free!<br>
+                We aim to make active living accessible and convenient,<br>
+                overcoming fitness 
+                <u>
+                    <a class="cursor-pointer" (click)="openModal()">obstacles</a>
+                </u>
+                .
+            </p>
+            
+            <h2>Features</h2>
+            <ul class="list-group mb-3">
+                <li class="list-group-item">Location finder</li>
+                <li class="list-group-item">Workout Planner</li>
+                <li class="list-group-item">Tutorials</li>
+                <li class="list-group-item">Workout Statistics</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<ng-template #obstaclesModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="obstaclesModalLabel">Common Obstacles</h5>
+        <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li *ngFor="let o of obstacles">
+                <p>{{o}}</p>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+    </div>
+</ng-template>
+
+
+
